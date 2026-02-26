@@ -1,65 +1,733 @@
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+     <div className="th-hero-wrapper hero-1" id="hero">
+            
+        <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div className="carousel-indicators d-none">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                    <div className="hero-inner">
+                        <img src="assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
+                    </div>
+                </div>
+
+                <div className="carousel-item">
+                    <div className="hero-inner">
+                        <img src="assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+    </div>
+    <div className="feature-sec-1 position-relative overflow-hidden space">
+
+        <div className="container text-center">
+            <h2 className="hero-title ">
+                Top Intermediate Colleges in Hyderabad for <br />IIT-JEE & NEET Coaching
+            </h2>
+            <p className="hero-text">
+                Your child's bright future begins with Rankridge's Outstanding integrated program.
+            </p>
+            <div className="row mt-4 gx-10 gy-10">
+                <div className="col-xl-4 col-md-6 feature-card_wrapp">
+                    <div className="feature-card wow fadeInUp" data-wow-delay=".2s">
+                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-1.svg" alt="icon" /></div>
+                        <h3 className="box-title">Strong Academics</h3>
+                        <p className="box-text style2">
+                            Integrated MPC & BiPC with IIT-JEE & NEET coaching for top results.
+                        </p>
+
+                    </div>
+                </div>
+                <div className="col-xl-4 col-md-6 feature-card_wrapp">
+                    <div className="feature-card wow fadeInUp" data-wow-delay=".8s">
+                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-4.svg" alt="icon" /></div>
+                        <h3 className="box-title">Proven Test-Practice Model</h3>
+                        <p className="box-text style2">
+                            Exam-pattern tests that develop accuracy, speed and time-management skills.
+                        </p>
+
+                    </div>
+                </div>
+                <div className="col-xl-4 col-md-6 feature-card_wrapp">
+                    <div className="feature-card wow fadeInUp" data-wow-delay=".4s">
+                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-2.svg" alt="icon" /></div>
+                        <h3 className="box-title">Rank-Focused Curriculum</h3>
+                        <p className="box-text style2">
+                            A proven learning strategy designed specially for IIT-JEE & NEET success
+                        </p>
+
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-      </main>
+    </div>
+    <div className="about1-area position-relative overflow-hidden space-bottom" id="about-sec">
+        <div className="about-shep-2 shape-mockup d-none d-xxl-block" data-bottom="0%" data-right="0%">
+            <img src="assets/img/shape/feature-shep-2-home-1.png" alt="shape" />
+        </div>
+        <span className="about-shape-right shape-mockup jump-reverse" data-right="3%" data-top="2%">
+            <img src="assets/img/shape/ab-shape1-2.png" alt="" />
+        </span>
+        <div className="container">
+            <div className="about-wrap1 position-relative z-index-2">
+                <div className="row gy-60 align-items-center justify-content-center">
+                    <div className="col-xl-6">
+                        <div className="img-box1">
+                            <div className="img1 text-center text-sm-start wow fadeInLeft" data-wow-delay=".2s">
+                                <img src="assets/img/college.jpg" alt="About" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="col-xl-6">
+                        <div className="about-content ms-xxl-4 ps-xxl-2 ms-xl-2">
+                            <div className="title-area">
+                                <span className="sub-title text-anim">Our Track Record That Speaks for Itself</span>
+                                <h2 className="sec-title text-anim2">
+                                    Rankridge Hyderabad — Transforming Aspirants Into Top Rankers
+                                </h2>
+                                <p className="sec-text mt-25 mb-0 wow fadeInUp" data-wow-delay=".2s">
+                                    Year after year, Rankridge produces outstanding IIT-JEE & NEET results through disciplined learning and personal attention.
+                                </p>
+                                <p className="sec-text mt-25 mb-0 wow fadeInUp" data-wow-delay=".2s">Our students consistently secure admissions into IITs, NITs, top medical and engineering colleges year after year — proving the strength of our integrated coaching system.</p>
+                            </div>
+                            <div className="about-feature-box">
+                                <div className="about-feature wow fadeInUp" data-wow-delay=".3s">
+                                    <span className="box-icon">
+                                        <img src="assets/img/icon/ab-users.svg" className="filter-lightseagreen" alt="icon" />
+                                    </span>
+                                    <div className="box-content">
+                                        <h3 className="box-title"> IITs & NITs — 2025</h3>
+                                        <p className="box-text">
+                                            Our team is ready for any challenge! We put our joint efforts to
+                                            generate brave business ideas.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="about-feature wow fadeInUp" data-wow-delay=".4s">
+                                    <span className="box-icon">
+                                        <img src="assets/img/icon/ab-message.svg" className="filter-lightseagreen" alt="icon" />
+                                    </span>
+                                    <div className="box-content">
+                                        <h3 className="box-title">Medical & Dental Colleges</h3>
+                                        <p className="box-text">
+                                            Our team is ready for any challenge! We put our joint efforts to
+                                            generate brave business ideas.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span className="about-shape-left shape-mockup movingX d-none d-xxl-block" data-bottom="0%" data-left="2%">
+            <img src="assets/img/shape/ab-shape1-1.png" alt="" />
+        </span>
+    </div>
+    <div className="counter-area1 overflow-hidden">
+        <div className="container th-container2">
+            <div className="counter-wrap1">
+                <div className="counter-card wow fadeInUp" data-wow-delay=".2s">
+                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-1.svg" className="filter-white" alt="icon" /></div>
+                    <div className="media-body">
+                        <h3 className="box-number"><span className="counter-number">238</span>+</h3>
+                        <p className="box-text">out of 250 students secured seats in top IITs & NITs — 2025 intake</p>
+                    </div>
+                </div>
+                <div className="divider"></div>
+                <div className="counter-card wow fadeInUp" data-wow-delay=".4s">
+                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-2.svg" className="filter-white" alt="icon" /></div>
+                    <div className="media-body">
+                        <h3 className="box-number"><span className="counter-number">171</span></h3>
+                        <p className="box-text">out of 180 students entered top Medical & Dental Colleges across India</p>
+                    </div>
+                </div>
+                <div className="divider"></div>
+                <div className="counter-card wow fadeInUp" data-wow-delay=".6s">
+                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-3.svg" className="filter-white" alt="icon" /></div>
+                    <div className="media-body">
+                        <h3 className="box-number"><span className="counter-number">384</span></h3>
+                        <p className="box-text">out of 408 students placed in top Engineering colleges through EAMCET</p>
+                    </div>
+                </div>
+                <div className="divider"></div>
+                <div className="counter-card wow fadeInUp" data-wow-delay=".7s">
+                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-4.svg" className="filter-white" alt="icon" /></div>
+                    <div className="media-body">
+                        <h3 className="box-number"><span className="counter-number">99</span>%</h3>
+                        <p className="box-text">
+                            Success Rate in IIT-JEE Mains 2025, 85% in 2024, 80% in 2023
+                        </p>
+                    </div>
+                </div>
+                <div className="divider"></div>
+            </div>
+        </div>
+    </div>
+    <section className="academic1-area space overflow-hidden" id="program-sec">
+        <div className="container">
+            <div className="row justify-content-lg-between justify-content-center align-items-center">
+                <div className="col-lg-9 col-12">
+                    <div className="title-area text-center text-lg-start mb-75">
+                        <span className="sub-title text-anim">Rankridge History</span>
+                        <h2 className="sec-title text-anim2">A Legacy of Record-Breaking Results</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div className="academic-wrapp">
+                <div className="slider-area">
+                    <div className="swiper th-slider has-shadow"
+                         id="academicSlider2"
+                         data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"1"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1400":{"slidesPerView":"3", "spaceBetween": "24"}},"autoHeight": "true", "autoplay" : "false"}'>
+                        <div className="swiper-wrapper">
+                            <div className="swiper-slide">
+                                <div className="academic-card">
+                                    <div className="academic-img">
+                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/y_cRqdMHevU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="325417213"></iframe>
+                                        </iframe>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="swiper-slide">
+                                <div className="academic-card">
+                                    <div className="academic-img">
+                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/OCRE3NHSfOg?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="596900779"></iframe>
+                                        </iframe>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="swiper-slide">
+                                <div className="academic-card">
+                                    <div className="academic-img">
+                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/eIedcrskiWU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="502397132"></iframe>
+                                        </iframe>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section className="why-area why-bg position-relative space overflow-hidden">
+        <div className="why-shape jump shape-mockup" data-left="0%" data-bottom="10%">
+            <img src="assets/img/shape/why-1-1.png" alt="" />
+        </div>
+        <div className="container">
+            <div className="row gy-4">
+                <div className="col-xl-8">
+                    <div className="title-area text-center text-lg-start">
+                        <span className="sub-title text-anim">WHY CHOOSEUS</span>
+                        <h2 className="sec-title text-anim2">
+                            What Sets Rankridge Apart for
+                            IIT-JEE & NEET?
+                        </h2>
+                    </div>
+                    <div className="row gy-60">
+                        <div className="col-lg-6 col-md-6">
+                            <div className="why-card wow fadeInUp" data-wow-delay=".2s">
+                                <div className="why-content">
+                                    <div className="why-titlebox">
+                                        <span className="why-number position-relative">1</span>
+                                        <h3 className="box-title">
+                                            <a href="">
+                                                Stress-Free Competitive Coaching
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div className="box-text-wrap">
+                                        <p className="box-text">
+                                            Opportunities for faith and fellowship are all around, from chapel
+                                            worship and dorm devotions to communal meals, clubs and activities.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                            <div className="why-card wow fadeInUp" data-wow-delay=".4s">
+                                <div className="why-content">
+                                    <div className="why-titlebox">
+                                        <span className="why-number position-relative">2</span>
+                                        <h3 className="box-title">
+                                            <a href="">
+                                                Equal Focus on<br /> Every Student
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div className="box-text-wrap">
+                                        <p className="box-text">
+                                            Opportunities for faith and fellowship are all around, from chapel
+                                            worship and dorm devotions to communal meals, clubs and activities.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                            <div className="why-card wow fadeInUp" data-wow-delay=".6s">
+                                <div className="why-content">
+                                    <div className="why-titlebox">
+                                        <span className="why-number position-relative">3</span>
+                                        <h3 className="box-title">
+                                            <a href="">
+                                                Personal Mentoring & Doubt Clarifications
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div className="box-text-wrap">
+                                        <p className="box-text">
+                                            Opportunities for faith and fellowship are all around, from chapel
+                                            worship and dorm devotions to communal meals, clubs and activities.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
+                            <div className="why-card wow fadeInUp" data-wow-delay=".8s">
+                                <div className="why-content">
+                                    <div className="why-titlebox">
+                                        <span className="why-number position-relative">4</span>
+                                        <h3 className="box-title">
+                                            <a href="">
+                                                Rank-Oriented & Research-Based Curriculum
+
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div className="box-text-wrap">
+                                        <p className="box-text">
+                                            Opportunities for faith and fellowship are all around, from chapel
+                                            worship and dorm devotions to communal meals, clubs and activities.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xl-4">
+                    <div className="why-video">
+                        <div className="why-video-bg overflow-hidden gsap-parallax">
+                            <img src="assets/img/why-video1-1.jpg" alt="image" />
+                            <div className="why-video-btn">
+                                <a href="https://www.youtube.com/watch?v=y_cRqdMHevU&t=1s" className="play-btn popup-video">
+                                    <i className="fa-sharp fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section className="campus overflow-hidden space">
+        <div className="campus-shape jump shape-mockup d-none d-xxl-block" data-bottom="22%" data-right="5%">
+            <img src="assets/img/shape/campus-1-1.png" alt="shape" />
+        </div>
+        <div className="container">
+            <div className="row justify-content-lg-between justify-content-center align-items-center">
+                <div className="col-lg-8 col-12">
+                    <div className="title-area text-center text-lg-start">
+                        <span className="sub-title text-anim">Right Course</span>
+                        <h2 className="sec-title text-anim2">Choose the Right Course for Your Child’s Success</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div className="row gy-5 justify-content-center">
+                <div className="col-xl-4 col-lg-6">
+                    <div className="campus-card wow fadeInLeft" data-wow-delay=".2s">
+                        <div className="campus-img global-img">
+                            <a href="" className="d-block position-relative">
+                                <img src="assets/img/campus-1-1.jpg" alt="campus image" className="img-1" />
+                            </a>
+                        </div>
+                        <div className="campus-content">
+                            <h3 className="box-title"><a href="">MPC with IIT-JEE Coaching</a></h3>
+                            <p className="box-text">
+                                Advanced IIT-JEE training with concept strengthening and exam-focused practice to secure All India Top Ranks.
+                            </p>
+                        </div>
+                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
+                    </div>
+                </div>
+                <div className="col-xl-4 col-lg-6">
+                    <div className="campus-card wow fadeInLeft" data-wow-delay=".4s">
+                        <div className="campus-img global-img">
+                            <a href="" className="d-block position-relative">
+                                <img src="assets/img/campus-1-2.jpg" alt="campus image" className="img-1" />
+                            </a>
+                        </div>
+                        <div className="campus-content">
+                            <h3 className="box-title"><a href="">BiPC with NEET Coaching</a></h3>
+                            <p className="box-text">
+                                Concept-driven NEET preparation with NCERT clarity and intensive test series for medical entrance confidence and success.
+                            </p>
+                        </div>
+                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
+                    </div>
+                </div>
+                <div className="col-xl-4 col-lg-6">
+                    <div className="campus-card wow fadeInLeft" data-wow-delay=".6s">
+                        <div className="campus-img global-img">
+                            <a href="" className="d-block position-relative">
+                                <img src="assets/img/campus-1-3.jpg" alt="campus image" className="img-1" />
+                            </a>
+                        </div>
+                        <div className="campus-content">
+                            <h3 className="box-title"><a href="">MPC with EAMCET Coaching</a></h3>
+                            <p className="box-text">
+                                Can’t make it to campus? Explore parts of Redeemer’s 70-acre campus through a series
+                                of short videos and get a glimpse of what it has to offer—wherever and whenever
+                                works best for you.
+                            </p>
+                        </div>
+                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div className="story-area-1 overflow-hidden">
+        <div className="container">
+            <div className="row justify-content-lg-between justify-content-center align-items-center">
+                <div className="col-lg-8 col-12">
+                    <div className="title-area text-center text-lg-start">
+                        <span className="sub-title text-anim">Achievements</span>
+                        <h2 className="sec-title text-anim2">Outstanding Achievements — Rankers Who Made Us Proud</h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div className="container-fluid">
+            <div className="swiper th-slider story-slider1"
+                 id="storySlider1"
+                 data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"1400":{"slidesPerView":"4"},"1200":{"slidesPerView":"3"},"992":{"slidesPerView":"3"},"768":{"slidesPerView":"2"},"576":{"slidesPerView":"2"}},"spaceBetween":"0"}'>
+                <div className="swiper-wrapper">
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/01.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/02.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/03.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/04.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/05.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/06.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+                    <div className="swiper-slide">
+                        <div className="story-card">
+                            <div className="box-img"><img src="assets/img/07.webp" alt="img" /></div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section className="faq-area-1 position-relative space overflow-hidden">
+
+        <div className="faq-shape3 movingX shape-mockup" data-bottom="0%" data-right="2%">
+            <img src="assets/img/shape/faq-1-1.png" alt="shape" />
+        </div>
+        <div className="ripple-shape d-none d-xl-block">
+            <span className="ripple-1"></span> <span className="ripple-2"></span> <span className="ripple-3"></span>
+            <span className="ripple-4"></span> <span className="ripple-5"></span>
+        </div>
+        <div className="container">
+            <div className="row gy-30 gx-30 align-items-center justify-content-center">
+                <div className="col-xxl-5">
+                    <div className="faq-imgbox wow fadeInLeft" data-wow-delay=".3s">
+                        <div className="img1">
+                            <img src="assets/img/college1.jpg" alt="About" />
+                        </div>
+
+                    </div>
+                </div>
+                <div className="col-xxl-7">
+                    <div className="faq-content">
+                        <div className="faq-wrap">
+                            <div className="title-area" style="margin-bottom:25px">
+                                <span className="sub-title text-anim">FAQ</span>
+                                <h2 className="sec-title text-anim2">Frequently Ask Questions</h2>
+                                <p className="box-text mt-20 wow fadeInUp" data-wow-delay=".3s">
+                                    Rankridge ensures every child succeeds by providing adaptive learning support, personalized attention, and inclusive teaching methods that help students thrive in a general education environment.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="faq-box">
+                            <div className="faq-wrap1">
+                                <div className="accordion" id="faqAccordion">
+                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".1s">
+                                        <div className="accordion-header" id="collapse-item-1">
+                                            <button className="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-1"
+                                                    aria-expanded="true"
+                                                    aria-controls="collapse-1">
+                                                01. What makes Rankridge stand out among other junior colleges?
+                                            </button>
+                                        </div>
+                                        <div id="collapse-1"
+                                             className="accordion-collapse collapse"
+                                             aria-labelledby="collapse-item-1"
+                                             data-bs-parent="#faqAccordion">
+                                            <div className="accordion-body">
+                                                <p className="faq-text">
+                                                    Rankridge stands out with its comprehensive approach, focusing on both academics and personal growth. With a 99% of success rate in IIT-JEE & NEET, it provides students with the support they need. The college offers a personalized learning experience with great facilities and strong mentorship.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".2s">
+                                        <div className="accordion-header" id="collapse-item-2">
+                                            <button className="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-2"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse-2">
+                                                02. Why should I choose Rankridge for intermediate college?
+                                            </button>
+                                        </div>
+                                        <div id="collapse-2"
+                                             className="accordion-collapse collapse"
+                                             aria-labelledby="collapse-item-2"
+                                             data-bs-parent="#faqAccordion">
+                                            <div className="accordion-body">
+                                                <p className="faq-text">
+
+                                                    Rankridge is an excellent choice for intermediate education with IIT JEE & NEET coaching because of its commitment to academic excellence, experienced faculty, and individual attention to students.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".3s">
+                                        <div className="accordion-header" id="collapse-item-3">
+                                            <button className="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-3"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse-3">
+                                                03. How are the teaching standards in Rankridge?
+                                            </button>
+                                        </div>
+                                        <div id="collapse-3"
+                                             className="accordion-collapse collapse"
+                                             aria-labelledby="collapse-item-3"
+                                             data-bs-parent="#faqAccordion">
+                                            <div className="accordion-body">
+                                                <p className="faq-text">
+
+                                                    The secret is quality teaching, a focused curriculum, and dedicated preparation for IIT-JEE and NEET through consistent practice and expert guidance.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".4s">
+                                        <div className="accordion-header" id="collapse-item-4">
+                                            <button className="accordion-button collapsed"
+                                                    type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-4"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse-4">
+                                                04. How are doubt clarification sessions conducted at Rankridge?
+
+                                            </button>
+                                        </div>
+                                        <div id="collapse-4"
+                                             className="accordion-collapse collapse"
+                                             aria-labelledby="collapse-item-4"
+                                             data-bs-parent="#faqAccordion">
+                                            <div className="accordion-body">
+                                                <p className="faq-text">
+
+                                                    Rankridge conducts one-on-one and group doubt sessions regularly, promoting open interaction and concept clarity.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section className="apply-stadum-area bg-title position-relative space overflow-hidden">
+        <div className="container">
+            <div className="row gy-4 align-items-center justify-content-between">
+                <div className="col-xl-8 order-1 order-xl-0">
+                    <div className="apply-stadum-titlebox title-area">
+                        <div className="sec-title-wrap">
+                            <span className="sub-title text-anim">Why Rankridge?</span>
+                            <h4 className="sec-title text-white text-anim2">
+                                With one-to-one mentoring, structured study plans, AI progress analytics & weekly exams — every student stays on track and reaches IIT-JEE, NEET goals with confidence.
+                            </h4>
+                        </div>
+
+                    </div>
+                    <div className="apply-stadum-wrapp">
+                        <div className="apply-stadum-box">
+                            <div className="checklist">
+                                <ul className="list-unstyled">
+                                    <li className="wow fadeInUp" data-wow-delay=".2s">Limited students per class for individual attention</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".3s">Focused IIT-JEE & NEET coaching with a 100% Rank-oriented curriculum</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".4s">India’s top and highly qualified faculty for    IIT-JEE and NEET</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".5s">Get a scientifically designed strategy for all India top ranks</li>
+                                </ul>
+                            </div>
+                            <div className="checklist">
+                                <ul className="list-unstyled">
+                                    <li className="wow fadeInUp" data-wow-delay=".6s">Exclusive study material customized for    IIT-JEE & NEET success</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".7s">Shortcut methods & smart problem-solving techniques</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".8s">Residential, Semi-Residential & Day-Scholar options</li>
+                                    <li className="wow fadeInUp" data-wow-delay=".9s">Fully AC campus with high-security surveillance</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <span className="apply-stadum-shape wow fadeInRight" data-wow-delay=".3s"></span>
+    </section>
+
+    <div className="community-area space">
+        <div className="container">
+
+
+            <div className="community-wrap">
+                <div className="row">
+                    <div className="col-lg-6 col-md-12">
+                        <div className="title-area">
+                            <span className="sub-title text-anim">INTERESTED IN JOINING WITH US?</span>
+                            <h2 className="sec-title text-anim2 mb-55">
+                                About Rankridge Junior College – Kukatpally & Hyderabad
+                            </h2>
+                            <div className="box-text-wrap mt-30 wow fadeInUp" data-wow-delay=".3s">
+                                <p className="box-text">
+                                    Rankridge Junior College is recognized among the best intermediate colleges in Hyderabad, especially for MPC and BiPC students aspiring for IIT-JEE, NEET and EAMCET. Located in KPHB / Kukatpally, Rankridge stands out from other inter colleges in Hyderabad with its integrated coaching model, expert faculty, small batches, personal mentoring and AI-based progress tracking. This proven system has positioned Rankridge among the top inter colleges and junior colleges in Hyderabad, helping thousands of students gain admission into IITs, NITs, AIIMS, Government Medical Colleges and top Engineering institutions.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="btn-wrap wow fadeInUp" data-wow-delay=".4s">
+                            <a href="" className="th-btn th-icon">Enquire Now</a>
+                        </div>
+                    </div>
+                    <div className="contact-form-v1 col-lg-6 col-md-12">
+                        <form action="" method="POST" className="contact-form ajax-contact">
+                            <div className="row">
+                                <div className="form-group style-border col-md-6">
+                                    <input type="text" className="form-control" name="fristname" id="fristname3" placeholder="First name*" />
+                                </div>
+
+                                <div className="form-group style-border col-md-6">
+                                    <input type="email" className="form-control" name="email" id="email3" placeholder="e-mail address*" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="number" className="form-control" name="number" id="number3" placeholder="Phone*" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="date" className="form-control" name="date" id="date3" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="text" className="form-control" name="country" id="country3" placeholder="Country*" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="text" className="form-control" name="city" id="city3" placeholder="City*" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="text" className="form-control" name="zipcode" id="zipcode3" placeholder="Zip Code*" />
+                                </div>
+                                <div className="form-group style-border col-md-6">
+                                    <input type="text" className="form-control" name="address" id="address3" placeholder="Address*" />
+                                </div>
+
+                                <div className="form-group style-border col-12">
+                                    <textarea name="message"
+                                              id="message3"
+                                              cols="30"
+                                              rows="2"
+                                              className="form-control"
+                                              placeholder="Write your message*"></textarea>
+                                </div>
+                                <div className="form-btn col-12 mt-15"><button className="th-btn th-btn white-hover">Send Message</button></div>
+                            </div>
+                            <p className="form-messages mb-0 mt-3"></p>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
     </div>
   );
 }
