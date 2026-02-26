@@ -1,4 +1,3 @@
-
 export default function Home() {
   return (
     <div>
@@ -13,13 +12,13 @@ export default function Home() {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <div className="hero-inner">
-                        <img src="assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
+                        <img src="./assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
                     </div>
                 </div>
 
                 <div className="carousel-item">
                     <div className="hero-inner">
-                        <img src="assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
+                        <img src="./assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
                     </div>
                 </div>
             </div>
@@ -199,7 +198,6 @@ export default function Home() {
                                 <div className="academic-card">
                                     <div className="academic-img">
                                         <iframe className="yt-frame" src="https://www.youtube.com/embed/y_cRqdMHevU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="325417213"></iframe>
-                                        </iframe>
 
                                     </div>
 
@@ -209,7 +207,6 @@ export default function Home() {
                                 <div className="academic-card">
                                     <div className="academic-img">
                                         <iframe className="yt-frame" src="https://www.youtube.com/embed/OCRE3NHSfOg?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="596900779"></iframe>
-                                        </iframe>
                                     </div>
 
                                 </div>
@@ -217,9 +214,7 @@ export default function Home() {
                             <div className="swiper-slide">
                                 <div className="academic-card">
                                     <div className="academic-img">
-                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/eIedcrskiWU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="502397132"></iframe>
-                                        </iframe>
-                                    </div>
+                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/eIedcrskiWU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="502397132"></iframe>                                    </div>
 
                                 </div>
                             </div>
@@ -501,7 +496,7 @@ export default function Home() {
                 <div className="col-xxl-7">
                     <div className="faq-content">
                         <div className="faq-wrap">
-                            <div className="title-area" style="margin-bottom:25px">
+                            <div className="title-area" style={{marginBottom: "25px"}}>
                                 <span className="sub-title text-anim">FAQ</span>
                                 <h2 className="sec-title text-anim2">Frequently Ask Questions</h2>
                                 <p className="box-text mt-20 wow fadeInUp" data-wow-delay=".3s">
@@ -712,8 +707,8 @@ export default function Home() {
                                 <div className="form-group style-border col-12">
                                     <textarea name="message"
                                               id="message3"
-                                              cols="30"
-                                              rows="2"
+                                              cols={30}
+                                              rows={2}
                                               className="form-control"
                                               placeholder="Write your message*"></textarea>
                                 </div>
