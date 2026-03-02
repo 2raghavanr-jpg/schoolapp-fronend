@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Script from "next/script";
 import "swiper/css";
-//import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./globals.css";
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/fontawesome.min.css";
@@ -38,7 +38,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+          <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+          strategy="afterInteractive"
+        />
         <Header />
+
         {children}
         <Footer />
       </body>
