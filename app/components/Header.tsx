@@ -9,7 +9,7 @@ export default function Header() {
                 <div className="row justify-content-between align-items-center">
                     <div className="col-auto">
                         <div className="header-logo">
-                            <a href=""><img src="assets/img/logo-4.png" alt="" style={{width:200}} /></a>
+                            <a href=""><img src="/assets/img/logo-4.png" alt="" style={{width:200}} /></a>
                         </div>
                     </div>
                     <div className="col-auto">

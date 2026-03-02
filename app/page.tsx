@@ -1,3 +1,4 @@
+
 export default function Home() {
   return (
     <div>
@@ -12,13 +13,13 @@ export default function Home() {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <div className="hero-inner">
-                        <img src="./assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
+                        <img src="/assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
                     </div>
                 </div>
 
                 <div className="carousel-item">
                     <div className="hero-inner">
-                        <img src="./assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
+                        <img src="/assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
                     </div>
                 </div>
             </div>

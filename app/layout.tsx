@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+//import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./globals.css";
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/fontawesome.min.css";
