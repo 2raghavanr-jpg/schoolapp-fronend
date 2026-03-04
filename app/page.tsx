@@ -481,14 +481,16 @@ export default function Home() {
             }}
             className="story-slider-custom"
           >
-            {storySlides.map((img, index) => (
-              <SwiperSlide key={index}>
+            
+            {homeData.achievements.map((achievement, index) => (
+                <SwiperSlide key={achievement.id}>
                 <div className="story-card shadow-sm border-0">
                   <div className="box-img">
-                    <img src={`assets/img/${img}`} alt={`Achievement ${index}`} className="w-100 rounded-3" />
+                    <img src={`${homeData.api_url}uploads/achievements/${achievement.image_path}`} alt={`Achievement ${achievement.title}`} className="w-100 rounded-3" />
                   </div>
                 </div>
               </SwiperSlide>
+                
             ))}
           </Swiper>
         </div>
@@ -527,7 +529,32 @@ export default function Home() {
                         <div className="faq-box">
                             <div className="faq-wrap1">
                                 <div className="accordion" id="faqAccordion">
-                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".1s">
+                                    {[...homeData.faqs].reverse().slice(0, 4).map((faq, index) => (
+                                        <div className="accordion-card wow fadeInUp" data-wow-delay={`.${index + 1}s`} key={faq.id}>
+                                            <div className="accordion-header" id={`collapse-item-${faq.id}`}>
+                                                <button className="accordion-button collapsed"
+                                                        type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={`#collapse-${faq.id}`}
+                                                        aria-expanded="false"
+                                                        aria-controls={`collapse-${faq.id}`}>
+                                                    {faq.id}. {faq.title}
+                                                </button>
+                                            </div>
+                                            <div id={`collapse-${faq.id}`}
+                                                className="accordion-collapse collapse"
+                                                aria-labelledby={`collapse-item-${faq.id}`}
+                                                data-bs-parent="#faqAccordion">
+                                                <div className="accordion-body">
+                                                    <p className="faq-text">
+                                                        {faq.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+))}
+
+                                    {/* <div className="accordion-card wow fadeInUp" data-wow-delay=".1s">
                                         <div className="accordion-header" id="collapse-item-1">
                                             <button className="accordion-button collapsed"
                                                     type="button"
@@ -622,7 +649,7 @@ export default function Home() {
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                 </div>
                             </div>
