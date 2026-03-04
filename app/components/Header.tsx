@@ -1,5 +1,4 @@
 import Link from "next/link";
-import WOW from "wowjs";
 export default function Header() {
   return (
     <header className="th-header header-layout1">

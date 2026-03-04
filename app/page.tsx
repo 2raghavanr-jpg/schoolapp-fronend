@@ -1,5 +1,54 @@
+"use client"; // Required at the top of your file
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+
+// Import Swiper styles (these are scoped to the component)
+import 'swiper/css';
 
 export default function Home() {
+    type Banner = {
+        id: number;
+        title:string;
+        image_path: string;
+    };
+
+    type Coaching = {
+        id:number;
+        image_path: string;
+        title: string;
+        description: string;
+
+    }
+
+    type History = {
+        youtube_id:string;
+    }
+
+    type Milestone = {
+        id: number;
+        image_path: string;
+        description: string;
+    };
+
+    type HomeData = {
+        api_url: string;
+        banners: Banner[];
+        milestones: Milestone[];
+        coachings:Coaching[];
+        history:History[];
+    };
+    const [homeData, setHomeData] = useState<HomeData | null>(null);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/uploads/api/home.json")
+        .then((res) => res.json())
+        .then((data) => setHomeData(data.data))
+        .catch((err) => console.error(err));
+    }, []);
+
+  if (!homeData) return <div>Loading...</div>;
+    const storySlides = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp", "06.webp", "07.webp"];
   return (
     <div>
      <div className="th-hero-wrapper hero-1" id="hero">
@@ -9,21 +58,26 @@ export default function Home() {
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             </div>
-
+             {homeData && (
             <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <div className="hero-inner">
-                        <img src="/assets/img/college3.webp" className="d-block w-100 hero-img" alt="Rankridge campus 1" loading="lazy" />
-                    </div>
+           
+            {homeData.banners.map((banner, index) => (
+                <div
+                key={banner.id}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
+                >
+                <div className="hero-inner">
+                    <img
+                    src={`${homeData.api_url}uploads/banners/${banner.image_path}`}
+                    className="d-block w-100 hero-img"
+                    alt={banner.title}
+                    />
                 </div>
-
-                <div className="carousel-item">
-                    <div className="hero-inner">
-                        <img src="/assets/img/college4.webp" className="d-block w-100 hero-img" alt="Rankridge campus 2" loading="lazy" />
-                    </div>
                 </div>
+            ))}
+          
             </div>
-
+              )}
 
         </div>
     </div>
@@ -36,47 +90,30 @@ export default function Home() {
             <p className="hero-text">
                 Your child's bright future begins with Rankridge's Outstanding integrated program.
             </p>
-            <div className="row mt-4 gx-10 gy-10">
-                <div className="col-xl-4 col-md-6 feature-card_wrapp">
-                    <div className="feature-card wow fadeInUp" data-wow-delay=".2s">
-                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-1.svg" alt="icon" /></div>
-                        <h3 className="box-title">Strong Academics</h3>
-                        <p className="box-text style2">
-                            Integrated MPC & BiPC with IIT-JEE & NEET coaching for top results.
-                        </p>
+                {homeData && (
+           <div className="row mt-4 gx-10 gy-10">
+        
+  {homeData.coachings.map((item) => (
+    <div key={item.id} className="col-xl-4 col-md-6 feature-card_wrapp">
+      <div className="feature-card">
+        <div className="box-icon">
+          <img src={`${homeData.api_url}uploads/coachings/${item.image_path}`} alt={item.title} />
+        </div>
+        <h3 className="box-title">{item.title}</h3>
+        <p className="box-text style2">{item.description}</p>
+      </div>
+    </div>
+  ))}
 
-                    </div>
-                </div>
-                <div className="col-xl-4 col-md-6 feature-card_wrapp">
-                    <div className="feature-card wow fadeInUp" data-wow-delay=".8s">
-                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-4.svg" alt="icon" /></div>
-                        <h3 className="box-title">Proven Test-Practice Model</h3>
-                        <p className="box-text style2">
-                            Exam-pattern tests that develop accuracy, speed and time-management skills.
-                        </p>
-
-                    </div>
-                </div>
-                <div className="col-xl-4 col-md-6 feature-card_wrapp">
-                    <div className="feature-card wow fadeInUp" data-wow-delay=".4s">
-                        <div className="box-icon"><img src="assets/img/icon/feature-icon1-2.svg" alt="icon" /></div>
-                        <h3 className="box-title">Rank-Focused Curriculum</h3>
-                        <p className="box-text style2">
-                            A proven learning strategy designed specially for IIT-JEE & NEET success
-                        </p>
-
-                    </div>
-                </div>
-
-
-            </div>
+</div>
+)}
         </div>
     </div>
     <div className="about1-area position-relative overflow-hidden space-bottom" id="about-sec">
-        <div className="about-shep-2 shape-mockup d-none d-xxl-block" data-bottom="0%" data-right="0%">
+        <div className="about-shep-2 shape-mockup d-none d-xxl-block home-inner-img-bottom-right" data-bottom="0%" data-right="0%" >
             <img src="assets/img/shape/feature-shep-2-home-1.png" alt="shape" />
         </div>
-        <span className="about-shape-right shape-mockup jump-reverse" data-right="3%" data-top="2%">
+        <span className="about-shape-right shape-mockup jump-reverse home-inner-img-top-right" data-right="3%" data-top="2%">
             <img src="assets/img/shape/ab-shape1-2.png" alt="" />
         </span>
         <div className="container">
@@ -134,48 +171,65 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        <span className="about-shape-left shape-mockup movingX d-none d-xxl-block" data-bottom="0%" data-left="2%">
+        <span className="about-shape-left shape-mockup movingX d-none d-xxl-block home-inner-img-bottom-left" data-bottom="0%" data-left="2%">
             <img src="assets/img/shape/ab-shape1-1.png" alt="" />
         </span>
     </div>
     <div className="counter-area1 overflow-hidden">
         <div className="container th-container2">
+            {homeData && (
             <div className="counter-wrap1">
-                <div className="counter-card wow fadeInUp" data-wow-delay=".2s">
-                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-1.svg" className="filter-white" alt="icon" /></div>
-                    <div className="media-body">
-                        <h3 className="box-number"><span className="counter-number">238</span>+</h3>
-                        <p className="box-text">out of 250 students secured seats in top IITs & NITs — 2025 intake</p>
-                    </div>
-                </div>
-                <div className="divider"></div>
-                <div className="counter-card wow fadeInUp" data-wow-delay=".4s">
-                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-2.svg" className="filter-white" alt="icon" /></div>
-                    <div className="media-body">
-                        <h3 className="box-number"><span className="counter-number">171</span></h3>
-                        <p className="box-text">out of 180 students entered top Medical & Dental Colleges across India</p>
-                    </div>
-                </div>
-                <div className="divider"></div>
-                <div className="counter-card wow fadeInUp" data-wow-delay=".6s">
-                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-3.svg" className="filter-white" alt="icon" /></div>
-                    <div className="media-body">
-                        <h3 className="box-number"><span className="counter-number">384</span></h3>
-                        <p className="box-text">out of 408 students placed in top Engineering colleges through EAMCET</p>
-                    </div>
-                </div>
-                <div className="divider"></div>
-                <div className="counter-card wow fadeInUp" data-wow-delay=".7s">
-                    <div className="box-icon"><img src="assets/img/icon/counter-icon1-4.svg" className="filter-white" alt="icon" /></div>
-                    <div className="media-body">
-                        <h3 className="box-number"><span className="counter-number">99</span>%</h3>
-                        <p className="box-text">
-                            Success Rate in IIT-JEE Mains 2025, 85% in 2024, 80% in 2023
-                        </p>
-                    </div>
-                </div>
-                <div className="divider"></div>
+                
+               {homeData.milestones.map((item, index) => {
+                    const delay = `${(index + 1) * 0.2}s`;
+
+                    let numberPart = "";
+                    let textPart = "";
+
+                    // Case 1: contains "out of"
+                    if (item.description.includes("out of")) {
+                        const parts = item.description.split("out of");
+                        numberPart = parts[0].trim();
+                        textPart = "out of " + parts[1].trim();
+                    }
+                    // Case 2: contains %
+                    else if (item.description.includes("%")) {
+                        const match = item.description.match(/^(\d+%)(.*)/);
+                        numberPart = match ? match[1] : "";
+                        textPart = match ? match[2] : item.description;
+                    }
+                    // Fallback
+                    else {
+                        numberPart = item.description;
+                        textPart = "";
+                    }
+
+                    return (
+                        <div key={item.id}>
+                        <div className="counter-card wow fadeInUp" data-wow-delay={delay}>
+                            <div className="box-icon">
+                            <img
+                                src={`${homeData.api_url}uploads/milestones/${item.image_path}`}
+                                className="filter-white"
+                                alt="icon"
+                            />
+                            </div>
+
+                            <div className="media-body">
+                            <h3 className="box-number">
+                                <span className="counter-number">{numberPart}</span>
+                            </h3>
+
+                            <p className="box-text">{textPart}</p>
+                            </div>
+                        </div>
+
+                        <div className="divider"></div>
+                        </div>
+                    );
+                    })}
             </div>
+            )}
         </div>
     </div>
     <section className="academic1-area space overflow-hidden" id="program-sec">
@@ -194,40 +248,33 @@ export default function Home() {
                     <div className="swiper th-slider has-shadow"
                          id="academicSlider2"
                          data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"1"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1400":{"slidesPerView":"3", "spaceBetween": "24"}},"autoHeight": "true", "autoplay" : "false"}'>
+                        {homeData && (
                         <div className="swiper-wrapper">
-                            <div className="swiper-slide">
-                                <div className="academic-card">
+                            {homeData.history.map((item, index) => (
+                                <div key={index} className="swiper-slide">
+                                    <div className="academic-card">
                                     <div className="academic-img">
-                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/y_cRqdMHevU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="325417213"></iframe>
-
+                                        <iframe
+                                        className="yt-frame"
+                                        src={`https://www.youtube.com/embed/${item.youtube_id}`}
+                                        allow="autoplay; encrypted-media"
+                                        allowFullScreen
+                                        ></iframe>
                                     </div>
-
-                                </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="academic-card">
-                                    <div className="academic-img">
-                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/OCRE3NHSfOg?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="596900779"></iframe>
                                     </div>
-
                                 </div>
-                            </div>
-                            <div className="swiper-slide">
-                                <div className="academic-card">
-                                    <div className="academic-img">
-                                        <iframe className="yt-frame" src="https://www.youtube.com/embed/eIedcrskiWU?mute=1enablejsapi=1" allow="autoplay; encrypted-media" allowFullScreen data-gtm-yt-inspected-8="true" id="502397132"></iframe>                                    </div>
-
-                                </div>
-                            </div>
+                                ))}
+                            
 
                         </div>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section className="why-area why-bg position-relative space overflow-hidden">
-        <div className="why-shape jump shape-mockup" data-left="0%" data-bottom="10%">
+        <div className="why-shape jump shape-mockup " data-left="0%" data-bottom="10%">
             <img src="assets/img/shape/why-1-1.png" alt="" />
         </div>
         <div className="container">
@@ -411,70 +458,42 @@ export default function Home() {
             </div>
         </div>
     </section>
-    <div className="story-area-1 overflow-hidden">
+<div className="story-area-1 overflow-hidden space">
         <div className="container">
-            <div className="row justify-content-lg-between justify-content-center align-items-center">
-                <div className="col-lg-8 col-12">
-                    <div className="title-area text-center text-lg-start">
-                        <span className="sub-title text-anim">Achievements</span>
-                        <h2 className="sec-title text-anim2">Outstanding Achievements — Rankers Who Made Us Proud</h2>
-                    </div>
-                </div>
-
-            </div>
+          <div className="title-area text-center text-lg-start">
+            <span className="sub-title">Achievements</span>
+            <h2 className="sec-title">Outstanding Achievements — Rankers Who Made Us Proud</h2>
+          </div>
         </div>
-        <div className="container-fluid">
-            <div className="swiper th-slider story-slider1"
-                 id="storySlider1"
-                 data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"1400":{"slidesPerView":"4"},"1200":{"slidesPerView":"3"},"992":{"slidesPerView":"3"},"768":{"slidesPerView":"2"},"576":{"slidesPerView":"2"}},"spaceBetween":"0"}'>
-                <div className="swiper-wrapper">
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/01.webp" alt="img" /></div>
 
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/02.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/03.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/04.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/05.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/06.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-                    <div className="swiper-slide">
-                        <div className="story-card">
-                            <div className="box-img"><img src="assets/img/07.webp" alt="img" /></div>
-
-                        </div>
-                    </div>
-
+        <div className="container-fluid px-lg-5">
+          <Swiper
+            modules={[Autoplay]}
+            loop={true}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            speed={800}
+            spaceBetween={20}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              576: { slidesPerView: 2 },
+              992: { slidesPerView: 3 },
+              1400: { slidesPerView: 4 },
+            }}
+            className="story-slider-custom"
+          >
+            {storySlides.map((img, index) => (
+              <SwiperSlide key={index}>
+                <div className="story-card shadow-sm border-0">
+                  <div className="box-img">
+                    <img src={`assets/img/${img}`} alt={`Achievement ${index}`} className="w-100 rounded-3" />
+                  </div>
                 </div>
-            </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-    </div>
+      </div>
+    
     <section className="faq-area-1 position-relative space overflow-hidden">
 
         <div className="faq-shape3 movingX shape-mockup" data-bottom="0%" data-right="2%">
