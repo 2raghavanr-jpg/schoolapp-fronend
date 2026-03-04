@@ -31,17 +31,42 @@ export default function Home() {
         description: string;
     };
 
+    type Achievement = {
+        id:number;
+        image_path:string;
+    }
+
+    type Trackrecord = {
+        title:string;
+    }
+
+    type Choosus = {
+
+    }
+
+    type Course = {
+        id:number;
+        title:string;
+        description:string;
+        image_path:string;
+        slug:string;
+    }
+
     type HomeData = {
         api_url: string;
         banners: Banner[];
         milestones: Milestone[];
         coachings:Coaching[];
         history:History[];
+        achievements:Achievement[];
+        trackrecord : Trackrecord[];
+        choosus:Choosus[];
+        courses:Course[];
     };
     const [homeData, setHomeData] = useState<HomeData | null>(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/uploads/api/home.json")
+        fetch("http://162.244.95.11:3000/uploads/api/home.json")
         .then((res) => res.json())
         .then((data) => setHomeData(data.data))
         .catch((err) => console.error(err));
@@ -127,47 +152,52 @@ export default function Home() {
 
                         </div>
                     </div>
+                
                     <div className="col-xl-6">
+                       { homeData && (
                         <div className="about-content ms-xxl-4 ps-xxl-2 ms-xl-2">
+                             {homeData.trackrecord.map((item) => (
+                                <div key={item.title}>
                             <div className="title-area">
                                 <span className="sub-title text-anim">Our Track Record That Speaks for Itself</span>
                                 <h2 className="sec-title text-anim2">
-                                    Rankridge Hyderabad — Transforming Aspirants Into Top Rankers
+                                     {item.title}
                                 </h2>
                                 <p className="sec-text mt-25 mb-0 wow fadeInUp" data-wow-delay=".2s">
-                                    Year after year, Rankridge produces outstanding IIT-JEE & NEET results through disciplined learning and personal attention.
+                                    {item.description}
                                 </p>
-                                <p className="sec-text mt-25 mb-0 wow fadeInUp" data-wow-delay=".2s">Our students consistently secure admissions into IITs, NITs, top medical and engineering colleges year after year — proving the strength of our integrated coaching system.</p>
+                                
                             </div>
                             <div className="about-feature-box">
                                 <div className="about-feature wow fadeInUp" data-wow-delay=".3s">
                                     <span className="box-icon">
-                                        <img src="assets/img/icon/ab-users.svg" className="filter-lightseagreen" alt="icon" />
+                                        <img src={`${homeData.api_url}uploads/track-records/${item.option_1_image_path}`} className="filter-lightseagreen" alt="icon" />
                                     </span>
                                     <div className="box-content">
-                                        <h3 className="box-title"> IITs & NITs — 2025</h3>
+                                        <h3 className="box-title"> {item.option_1_title}</h3>
                                         <p className="box-text">
-                                            Our team is ready for any challenge! We put our joint efforts to
-                                            generate brave business ideas.
+                                           {item.option_1_description}
                                         </p>
                                     </div>
                                 </div>
                                 <div className="about-feature wow fadeInUp" data-wow-delay=".4s">
                                     <span className="box-icon">
-                                        <img src="assets/img/icon/ab-message.svg" className="filter-lightseagreen" alt="icon" />
+                                        <img src={`${homeData.api_url}uploads/track-records/${item.option_2_image_path}`} className="filter-lightseagreen" alt="icon" />
                                     </span>
                                     <div className="box-content">
-                                        <h3 className="box-title">Medical & Dental Colleges</h3>
+                                        <h3 className="box-title">{item.option_2_title}</h3>
                                         <p className="box-text">
-                                            Our team is ready for any challenge! We put our joint efforts to
-                                            generate brave business ideas.
+                                            {item.option_2_description}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
+                            </div>
+                             ))}
                         </div>
+                       )}
                     </div>
+
                 </div>
             </div>
         </div>
@@ -277,14 +307,15 @@ export default function Home() {
         <div className="why-shape jump shape-mockup " data-left="0%" data-bottom="10%">
             <img src="assets/img/shape/why-1-1.png" alt="" />
         </div>
+        {homeData && (
         <div className="container">
+             {homeData.choosus.map((item) => (
             <div className="row gy-4">
                 <div className="col-xl-8">
                     <div className="title-area text-center text-lg-start">
                         <span className="sub-title text-anim">WHY CHOOSEUS</span>
                         <h2 className="sec-title text-anim2">
-                            What Sets Rankridge Apart for
-                            IIT-JEE & NEET?
+                            {item.title}
                         </h2>
                     </div>
                     <div className="row gy-60">
@@ -295,14 +326,13 @@ export default function Home() {
                                         <span className="why-number position-relative">1</span>
                                         <h3 className="box-title">
                                             <a href="">
-                                                Stress-Free Competitive Coaching
+                                                {item.option_1_title}
                                             </a>
                                         </h3>
                                     </div>
                                     <div className="box-text-wrap">
                                         <p className="box-text">
-                                            Opportunities for faith and fellowship are all around, from chapel
-                                            worship and dorm devotions to communal meals, clubs and activities.
+                                            {item.option_1_description}
                                         </p>
                                     </div>
                                 </div>
@@ -316,14 +346,13 @@ export default function Home() {
                                         <span className="why-number position-relative">2</span>
                                         <h3 className="box-title">
                                             <a href="">
-                                                Equal Focus on<br /> Every Student
+                                                {item.option_2_title}
                                             </a>
                                         </h3>
                                     </div>
                                     <div className="box-text-wrap">
                                         <p className="box-text">
-                                            Opportunities for faith and fellowship are all around, from chapel
-                                            worship and dorm devotions to communal meals, clubs and activities.
+                                           {item.option_2_description}
                                         </p>
                                     </div>
                                 </div>
@@ -337,14 +366,13 @@ export default function Home() {
                                         <span className="why-number position-relative">3</span>
                                         <h3 className="box-title">
                                             <a href="">
-                                                Personal Mentoring & Doubt Clarifications
+                                                {item.option_3_title}
                                             </a>
                                         </h3>
                                     </div>
                                     <div className="box-text-wrap">
                                         <p className="box-text">
-                                            Opportunities for faith and fellowship are all around, from chapel
-                                            worship and dorm devotions to communal meals, clubs and activities.
+                                           {item.option_3_description}
                                         </p>
                                     </div>
                                 </div>
@@ -358,15 +386,14 @@ export default function Home() {
                                         <span className="why-number position-relative">4</span>
                                         <h3 className="box-title">
                                             <a href="">
-                                                Rank-Oriented & Research-Based Curriculum
+                                                {item.option_4_title}
 
                                             </a>
                                         </h3>
                                     </div>
                                     <div className="box-text-wrap">
                                         <p className="box-text">
-                                            Opportunities for faith and fellowship are all around, from chapel
-                                            worship and dorm devotions to communal meals, clubs and activities.
+                                            {item.option_4_description}
                                         </p>
                                     </div>
                                 </div>
@@ -380,7 +407,7 @@ export default function Home() {
                         <div className="why-video-bg overflow-hidden gsap-parallax">
                             <img src="assets/img/why-video1-1.jpg" alt="image" />
                             <div className="why-video-btn">
-                                <a href="https://www.youtube.com/watch?v=y_cRqdMHevU&t=1s" className="play-btn popup-video">
+                                <a href="https://www.youtube.com/watch?v={title.youtube_id}&t=1s" className="play-btn popup-video">
                                     <i className="fa-sharp fa-solid fa-play"></i>
                                 </a>
                             </div>
@@ -388,7 +415,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+             ))}
         </div>
+        )}
     </section>
     <section className="campus overflow-hidden space">
         <div className="campus-shape jump shape-mockup d-none d-xxl-block" data-bottom="22%" data-right="5%">
@@ -404,58 +433,39 @@ export default function Home() {
                 </div>
 
             </div>
+        {homeData && (
             <div className="row gy-5 justify-content-center">
-                <div className="col-xl-4 col-lg-6">
+                {homeData.courses.map((item, index) => (
+                <div key={item.id ?? index} className="col-xl-4 col-lg-6">
                     <div className="campus-card wow fadeInLeft" data-wow-delay=".2s">
-                        <div className="campus-img global-img">
-                            <a href="" className="d-block position-relative">
-                                <img src="assets/img/campus-1-1.jpg" alt="campus image" className="img-1" />
-                            </a>
-                        </div>
-                        <div className="campus-content">
-                            <h3 className="box-title"><a href="">MPC with IIT-JEE Coaching</a></h3>
-                            <p className="box-text">
-                                Advanced IIT-JEE training with concept strengthening and exam-focused practice to secure All India Top Ranks.
-                            </p>
-                        </div>
-                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
+                    <div className="campus-img global-img">
+                        <a href="" className="d-block position-relative">
+                        <img
+                            src={`${homeData.api_url}uploads/courses/${item.image_path}`}
+                            alt={item.title}
+                            className="img-1"
+                        />
+                        </a>
+                    </div>
+
+                    <div className="campus-content">
+                        <h3 className="box-title">
+                        <a href="">{item.title}</a>
+                        </h3>
+                    <p
+                    className="box-text"
+                    dangerouslySetInnerHTML={{ __html: item.description }}
+                    ></p>
+                    </div>
+
+                    <a href="" className="th-btn style-border1 th-icon">
+                        Enroll Now
+                    </a>
                     </div>
                 </div>
-                <div className="col-xl-4 col-lg-6">
-                    <div className="campus-card wow fadeInLeft" data-wow-delay=".4s">
-                        <div className="campus-img global-img">
-                            <a href="" className="d-block position-relative">
-                                <img src="assets/img/campus-1-2.jpg" alt="campus image" className="img-1" />
-                            </a>
-                        </div>
-                        <div className="campus-content">
-                            <h3 className="box-title"><a href="">BiPC with NEET Coaching</a></h3>
-                            <p className="box-text">
-                                Concept-driven NEET preparation with NCERT clarity and intensive test series for medical entrance confidence and success.
-                            </p>
-                        </div>
-                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
-                    </div>
-                </div>
-                <div className="col-xl-4 col-lg-6">
-                    <div className="campus-card wow fadeInLeft" data-wow-delay=".6s">
-                        <div className="campus-img global-img">
-                            <a href="" className="d-block position-relative">
-                                <img src="assets/img/campus-1-3.jpg" alt="campus image" className="img-1" />
-                            </a>
-                        </div>
-                        <div className="campus-content">
-                            <h3 className="box-title"><a href="">MPC with EAMCET Coaching</a></h3>
-                            <p className="box-text">
-                                Can’t make it to campus? Explore parts of Redeemer’s 70-acre campus through a series
-                                of short videos and get a glimpse of what it has to offer—wherever and whenever
-                                works best for you.
-                            </p>
-                        </div>
-                        <a href="" className="th-btn style-border1 th-icon">Enroll Now</a>
-                    </div>
-                </div>
+                ))}
             </div>
+            )}
         </div>
     </section>
 <div className="story-area-1 overflow-hidden space">
@@ -467,6 +477,7 @@ export default function Home() {
         </div>
 
         <div className="container-fluid px-lg-5">
+            { homeData && (
           <Swiper
             modules={[Autoplay]}
             loop={true}
@@ -493,6 +504,7 @@ export default function Home() {
                 
             ))}
           </Swiper>
+            )}
         </div>
       </div>
     
