@@ -34,14 +34,39 @@ export default function Home() {
     type Achievement = {
         id:number;
         image_path:string;
+        title:string;
+    }
+
+    type faq = {
+        id:number;
+        title:string;
+        description:string;
     }
 
     type Trackrecord = {
         title:string;
+        description:string;
+        option_1_title:string;
+        option_2_title:string;
+        option_3_title:string;
+        option_1_image_path:string;
+        option_2_image_path:string;
+        option_3_image_path:string;
+        option_1_description:string;
+        option_2_description:string;
+        option_3_description:string;
     }
 
     type Choosus = {
-
+        title:string;
+        option_1_title:string;
+        option_2_title:string;
+        option_3_title:string;
+        option_4_title:string;
+        option_1_description:string;
+        option_2_description:string;
+        option_3_description:string;
+        option_4_description:string;
     }
 
     type Course = {
@@ -62,6 +87,7 @@ export default function Home() {
         trackrecord : Trackrecord[];
         choosus:Choosus[];
         courses:Course[];
+        faqs:faq[];
     };
     const [homeData, setHomeData] = useState<HomeData | null>(null);
 
