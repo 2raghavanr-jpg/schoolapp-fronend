@@ -1,14 +1,27 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Header() {
+
+  const [homeData, setHomeData] = useState(null);
+
+  useEffect(() => {
+    fetch("http://162.244.95.11:3000/uploads/api/home.json")
+      .then((res) => res.json())
+      .then((data) => setHomeData(data.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <header className="th-header header-layout1">
-
+        
         <div className="header-info">
             <div className="container">
                 <div className="row justify-content-between align-items-center">
                     <div className="col-auto">
                         <div className="header-logo">
-                            <a href=""><img src="/assets/img/logo-4.png" alt="" style={{width:200}} /></a>
+                            <a href="/"><img src="http://162.244.95.11:3000/uploads/school/1771763099573-logo-4.png" alt="" style={{width:200}} /></a>
                         </div>
                     </div>
                     <div className="col-auto">
@@ -16,21 +29,31 @@ export default function Header() {
                             <nav className="main-menu d-none d-xl-block">
                                 <ul>
                                     <li>
-                                        <a href="index.html">Home</a>
+                                        <a href="/">Home</a>
                                     </li>
-                                    <li><a href="aboutus.html">About Us</a></li>
+                                    <li><a href="/aboutus">About Us</a></li>
+                                    {homeData && (
                                     <li className="menu-item-has-children">
                                         <a href="#">Academic Programs</a>
+
                                         <ul className="sub-menu">
-                                            <li><a href="mpc.html">MPC with IIT-JEE Coaching</a></li>
-                                            <li><a href="bipc.html">BiPC with NEET Coaching</a></li>
-                                            <li><a href="mpc.html">MPC with EAMCET Coaching</a></li>
+                                        {homeData.getAcademic.map((item, index) => {
+                                            return (
+                                            <li key={index}>
+                                                <a href={`/course/${item.slug}`}>
+                                                {item.title}
+                                                </a>
+                                            </li>
+                                            );
+                                        })}
                                         </ul>
+
                                     </li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="events.html">Events</a></li>
-                                    <li><a href="blog.html">Blogs</a></li>
-                                    <li><a href="contactus.html">Contact Us</a></li>
+                                    )}
+                                    <li><a href="/faq">FAQ</a></li>
+                                    <li><a href="/events">Events</a></li>
+                                    <li><a href="/blogs">Blogs</a></li>
+                                    <li><a href="/contactus">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -51,7 +74,7 @@ export default function Header() {
         
                 <div className="mobile-menu-header">
                     <a className="mobile-logo" href="index.html" aria-label="Rankridge home">
-                        <img src="assets/img/logo-4.png" alt="Rankridge logo" />
+                        <img src="/assets/img/logo-4.png" alt="Rankridge logo" />
                     </a>
                     <button className="th-menu-close" aria-label="Close menu">
                         <i className="fas fa-times" aria-hidden="true"></i>
@@ -60,20 +83,32 @@ export default function Header() {
 
                 <nav className="main-menu-mobile">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="aboutus.html">About Us</a></li>
-                        <li className="menu-item-has-children">
-                            <a href="#">Academic Programs</a>
-                            <ul className="sub-menu">
-                                <li><a href="mpc.html">MPC with IIT-JEE Coaching</a></li>
-                                <li><a href="bipc.html">BiPC with NEET Coaching</a></li>
-                                <li><a href="mpc.html">MPC with EAMCET Coaching</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="blog.html">Blogs</a></li>
-                        <li><a href="contactus.html">Contact Us</a></li>
+                         <li>
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li><a href="/aboutus">About Us</a></li>
+                                    {homeData && (
+                                    <li className="menu-item-has-children">
+                                        <a href="#">Academic Programs</a>
+
+                                        <ul className="sub-menu">
+                                        {homeData.getAcademic.map((item, index) => {
+                                            return (
+                                            <li key={index}>
+                                                <a href={`/course/${item.slug}`}>
+                                                {item.title}
+                                                </a>
+                                            </li>
+                                            );
+                                        })}
+                                        </ul>
+
+                                    </li>
+                                    )}
+                                    <li><a href="/faq">FAQ</a></li>
+                                    <li><a href="/events">Events</a></li>
+                                    <li><a href="/blogs">Blogs</a></li>
+                                    <li><a href="/contactus">Contact Us</a></li>
                     </ul>
                 </nav>
             </div>

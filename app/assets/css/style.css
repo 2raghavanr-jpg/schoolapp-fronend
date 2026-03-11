@@ -112,7 +112,7 @@ textarea:active {
 img:not([draggable]),
 embed {
     max-width: 100%;
-    height: auto
+    height: auto;
 }
 
 ul {
@@ -783,10 +783,10 @@ label {
 
 .swiper-slide{
     width: 424px;
-    margin: 10px;
+
 }
 
-.swiper-slide .topper{
+.swiper-slide {
   flex-shrink: 0;
   width: auto;
 }
@@ -5154,6 +5154,7 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
     .counter-card {
         margin-right: 0;
         display: block;
+        justify-content: center;
         text-align: center;
         padding: 40px;
         border-right: 1px solid var(--theme-color);
@@ -5197,7 +5198,10 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 
 @media (max-width: 1199px) {
     .counter-card .box-icon {
-        margin-bottom: 25px
+        margin-bottom: 25px;
+        display : flex;
+        justify-content : center;
+        align-items : center;
     }
 }
 
@@ -6042,14 +6046,34 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 .accordion-card .accordion-body {
     border: none;
     padding: 0 35px 20px 0;
-    margin: 0 30px
+    margin: 0 30px;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
+/* .accordion-card .faq-text {
+    margin-bottom: -0.48em;
+    color: white !important;
+    font-size: 15px;
+    letter-spacing: 0;
+    z-index : 1000;
+} */
+
+.accordion-card .accordion-collapse.show {
+    visibility: visible !important;
+    height: auto !important;
+    display: block !important;
+}
 .accordion-card .faq-text {
     margin-bottom: -0.48em;
-    color: var(--white-color);
+    /* Change from white to your body color or a dark color */
+    color: var(--body-color) !important; 
     font-size: 15px;
-    letter-spacing: 0
+    letter-spacing: 0;
+    color:white;
+}
+.accordion-card:not(:has(.accordion-button.collapsed)) .faq-text {
+    color: var(--black-color8) !important;
 }
 
 @media (max-width: 575px) {
@@ -6380,7 +6404,9 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 
 .academic-card {
     padding: 10px;
-    border: 1px solid var(--th-border-color)
+    border: 1px solid var(--th-border-color);
+    width: 420px;
+    margin : 10px   
 }
 
     .academic-card.style2 {
@@ -7339,10 +7365,10 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 }
 
 /* Hero fixes: ensure the .th-hero-bg fills the slide container */
-.hero-inner {
-    position: relative; /* so .th-hero-bg absolute is relative to this element */
+/* .hero-inner {
+    position: relative; 
     overflow: hidden;
-}
+} */
 
 /* when main.js processes [data-bg-src] it adds .background-image */
 .th-hero-bg.background-image {
@@ -7583,4 +7609,27 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 
 .story-card:hover {
     transform: translateY(-5px);
+}
+
+/* Ensure the swiper container doesn't clip the shadow/edges of the banner */
+.heroCarousel {
+    overflow: visible !important; 
+    width: 100%;
+    
+}
+
+.hero-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* Add slight padding if the banner design touches the absolute edge */
+    padding: 0 10px; 
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Changed from 'cover' to 'contain' to stop clipping */
 }

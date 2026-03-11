@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Import Swiper styles (these are scoped to the component)
 import 'swiper/css';
 
@@ -34,39 +34,14 @@ export default function Home() {
     type Achievement = {
         id:number;
         image_path:string;
-        title:string;
-    }
-
-    type faq = {
-        id:number;
-        title:string;
-        description:string;
     }
 
     type Trackrecord = {
         title:string;
-        description:string;
-        option_1_title:string;
-        option_2_title:string;
-        option_3_title:string;
-        option_1_image_path:string;
-        option_2_image_path:string;
-        option_3_image_path:string;
-        option_1_description:string;
-        option_2_description:string;
-        option_3_description:string;
     }
 
     type Choosus = {
-        title:string;
-        option_1_title:string;
-        option_2_title:string;
-        option_3_title:string;
-        option_4_title:string;
-        option_1_description:string;
-        option_2_description:string;
-        option_3_description:string;
-        option_4_description:string;
+
     }
 
     type Course = {
@@ -87,10 +62,9 @@ export default function Home() {
         trackrecord : Trackrecord[];
         choosus:Choosus[];
         courses:Course[];
-        faqs:faq[];
     };
     const [homeData, setHomeData] = useState<HomeData | null>(null);
-
+    
     useEffect(() => {
         fetch("http://162.244.95.11:3000/uploads/api/home.json")
         .then((res) => res.json())
@@ -99,10 +73,9 @@ export default function Home() {
     }, []);
 
   if (!homeData) return <div>Loading...</div>;
-    const storySlides = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp", "06.webp", "07.webp"];
   return (
     <div>
-     <div className="th-hero-wrapper hero-1" id="hero">
+     {/* <div className="th-hero-wrapper hero-1" id="hero">
             
         <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
             <div className="carousel-indicators d-none">
@@ -132,6 +105,34 @@ export default function Home() {
 
         </div>
     </div>
+     */}
+<div className="th-hero-wrapper hero-1" id="hero" style={{ overflow: 'hidden' }}>
+    <div className="container-fluid p-0"> {/* Use fluid and remove padding */}
+        {homeData && (
+            <Swiper
+                modules={[Autoplay]}
+                autoplay={{ delay: 6000 }}
+                loop={true}
+                className="heroCarousel"
+                slidesPerView={1}
+                centeredSlides={true}
+            >
+                {homeData.banners.map((banner) => (
+                    <SwiperSlide key={banner.id}>
+                        <div className="hero-inner">
+                            <img
+                                src={`${homeData.api_url}uploads/banners/${banner.image_path}`}
+                                className="hero-img"
+                                alt={banner.title}
+                            />
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        )}
+    </div>
+</div>
+
     <div className="feature-sec-1 position-relative overflow-hidden space">
 
         <div className="container text-center">
@@ -335,7 +336,8 @@ export default function Home() {
         </div>
         {homeData && (
         <div className="container">
-             {homeData.choosus.map((item) => (
+             {homeData.choosus.map((item,index) => (
+            <div key={item.id ?? index} >
             <div className="row gy-4">
                 <div className="col-xl-8">
                     <div className="title-area text-center text-lg-start">
@@ -440,6 +442,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
              ))}
         </div>
@@ -592,102 +595,6 @@ export default function Home() {
                                         </div>
 ))}
 
-                                    {/* <div className="accordion-card wow fadeInUp" data-wow-delay=".1s">
-                                        <div className="accordion-header" id="collapse-item-1">
-                                            <button className="accordion-button collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-1"
-                                                    aria-expanded="true"
-                                                    aria-controls="collapse-1">
-                                                01. What makes Rankridge stand out among other junior colleges?
-                                            </button>
-                                        </div>
-                                        <div id="collapse-1"
-                                             className="accordion-collapse collapse"
-                                             aria-labelledby="collapse-item-1"
-                                             data-bs-parent="#faqAccordion">
-                                            <div className="accordion-body">
-                                                <p className="faq-text">
-                                                    Rankridge stands out with its comprehensive approach, focusing on both academics and personal growth. With a 99% of success rate in IIT-JEE & NEET, it provides students with the support they need. The college offers a personalized learning experience with great facilities and strong mentorship.
-
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".2s">
-                                        <div className="accordion-header" id="collapse-item-2">
-                                            <button className="accordion-button collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-2"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapse-2">
-                                                02. Why should I choose Rankridge for intermediate college?
-                                            </button>
-                                        </div>
-                                        <div id="collapse-2"
-                                             className="accordion-collapse collapse"
-                                             aria-labelledby="collapse-item-2"
-                                             data-bs-parent="#faqAccordion">
-                                            <div className="accordion-body">
-                                                <p className="faq-text">
-
-                                                    Rankridge is an excellent choice for intermediate education with IIT JEE & NEET coaching because of its commitment to academic excellence, experienced faculty, and individual attention to students.
-
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".3s">
-                                        <div className="accordion-header" id="collapse-item-3">
-                                            <button className="accordion-button collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-3"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapse-3">
-                                                03. How are the teaching standards in Rankridge?
-                                            </button>
-                                        </div>
-                                        <div id="collapse-3"
-                                             className="accordion-collapse collapse"
-                                             aria-labelledby="collapse-item-3"
-                                             data-bs-parent="#faqAccordion">
-                                            <div className="accordion-body">
-                                                <p className="faq-text">
-
-                                                    The secret is quality teaching, a focused curriculum, and dedicated preparation for IIT-JEE and NEET through consistent practice and expert guidance.
-
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="accordion-card wow fadeInUp" data-wow-delay=".4s">
-                                        <div className="accordion-header" id="collapse-item-4">
-                                            <button className="accordion-button collapsed"
-                                                    type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-4"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapse-4">
-                                                04. How are doubt clarification sessions conducted at Rankridge?
-
-                                            </button>
-                                        </div>
-                                        <div id="collapse-4"
-                                             className="accordion-collapse collapse"
-                                             aria-labelledby="collapse-item-4"
-                                             data-bs-parent="#faqAccordion">
-                                            <div className="accordion-body">
-                                                <p className="faq-text">
-
-                                                    Rankridge conducts one-on-one and group doubt sessions regularly, promoting open interaction and concept clarity.
-
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div> */}
 
                                 </div>
                             </div>
@@ -712,22 +619,14 @@ export default function Home() {
                     </div>
                     <div className="apply-stadum-wrapp">
                         <div className="apply-stadum-box">
-                            <div className="checklist">
-                                <ul className="list-unstyled">
-                                    <li className="wow fadeInUp" data-wow-delay=".2s">Limited students per class for individual attention</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".3s">Focused IIT-JEE & NEET coaching with a 100% Rank-oriented curriculum</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".4s">India’s top and highly qualified faculty for    IIT-JEE and NEET</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".5s">Get a scientifically designed strategy for all India top ranks</li>
-                                </ul>
-                            </div>
-                            <div className="checklist">
-                                <ul className="list-unstyled">
-                                    <li className="wow fadeInUp" data-wow-delay=".6s">Exclusive study material customized for    IIT-JEE & NEET success</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".7s">Shortcut methods & smart problem-solving techniques</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".8s">Residential, Semi-Residential & Day-Scholar options</li>
-                                    <li className="wow fadeInUp" data-wow-delay=".9s">Fully AC campus with high-security surveillance</li>
-                                </ul>
-                            </div>
+                         
+                            {homeData.page.map((item, index) => (
+                            <div
+                                key={index}
+                                className="checklist"
+                                dangerouslySetInnerHTML={{ __html: item.description }}
+                            ></div>
+                            ))}
                         </div>
 
                     </div>
@@ -747,13 +646,19 @@ export default function Home() {
                     <div className="col-lg-6 col-md-12">
                         <div className="title-area">
                             <span className="sub-title text-anim">INTERESTED IN JOINING WITH US?</span>
+                            
                             <h2 className="sec-title text-anim2 mb-55">
                                 About Rankridge Junior College – Kukatpally & Hyderabad
                             </h2>
+                            
                             <div className="box-text-wrap mt-30 wow fadeInUp" data-wow-delay=".3s">
-                                <p className="box-text">
-                                    Rankridge Junior College is recognized among the best intermediate colleges in Hyderabad, especially for MPC and BiPC students aspiring for IIT-JEE, NEET and EAMCET. Located in KPHB / Kukatpally, Rankridge stands out from other inter colleges in Hyderabad with its integrated coaching model, expert faculty, small batches, personal mentoring and AI-based progress tracking. This proven system has positioned Rankridge among the top inter colleges and junior colleges in Hyderabad, helping thousands of students gain admission into IITs, NITs, AIIMS, Government Medical Colleges and top Engineering institutions.
-                                </p>
+                                 {homeData.page.map((item, index) => (
+                                 <p
+                                key={index}
+                                className="box-text"
+                                dangerouslySetInnerHTML={{ __html: item.short_description }}
+                            ></p>
+                                ))}
                             </div>
                         </div>
                         <div className="btn-wrap wow fadeInUp" data-wow-delay=".4s">
