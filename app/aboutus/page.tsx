@@ -23,6 +23,37 @@ async function getAbout() {
   };
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+
+  const { slug } = await params;
+
+  const data = await getAbout();
+
+  if (!data) return {};
+
+  const { page } = data;
+
+  return {
+    title: page?.meta_title || page?.title,
+    description: page?.meta_description,
+    keywords: page?.meta_keyword,
+
+    alternates: {
+      canonical: `/p/${slug}`,
+    },
+
+    openGraph: {
+      title: page?.meta_title || page?.title,
+      description: page?.meta_description,
+      type: "article",
+    },
+  };
+}
+
 export default async function AboutPage() {
 
   const data = await getAbout();
