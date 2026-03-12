@@ -26,7 +26,34 @@ async function getBlog(id: number) {
     categories: json.data.category_count_list || [],
   };
 }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+    const { id } = await params;
+  const data = await getBlog(Number(id));
 
+  if (!data) return {};
+
+  const { blog } = data;
+  console.log("faq",blog);
+  return {
+    title: blog?.meta_title || blog?.title,
+    description: blog?.description,
+    keywords:  blog?.title,
+
+    alternates: {
+      canonical: "/faq",
+    },
+
+    openGraph: {
+      title: blog?.meta_title || blog?.title,
+      description: blog?.description,
+      type: "article",
+    },
+  };
+}
 export default async function BlogPage({
   params,
 }: {

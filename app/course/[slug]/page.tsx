@@ -26,6 +26,37 @@ async function getCourse(slug: string) {
   };
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+
+  const { slug } = await params;
+
+  const data = await getCourse(slug);
+
+  if (!data) return {};
+
+  const { course } = data;
+
+  return {
+    title: course?.meta_title || course?.title,
+    description: course?.meta_description,
+    keywords: course?.meta_keyword,
+
+    alternates: {
+      canonical: `/academics/${slug}`,
+    },
+
+    openGraph: {
+      title: course?.meta_title || course?.title,
+      description: course?.meta_description,
+      type: "article",
+    },
+  };
+}
+
 export default async function CoursePage({
   params,
 }: {

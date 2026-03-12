@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import CategoryClient from "./CategoryClient";
 
-async function getBlogs(id: number) {
+async function getCategory(id: string) {
+
   const res = await fetch(
     `http://162.244.95.11:3000/api/blog-category/${id}`,
     {
@@ -18,170 +18,50 @@ async function getBlogs(id: number) {
 
   const json = await res.json();
 
-  if (!json?.data?.blogs) return null;
-
   return {
-    blogs: json.data.blogs,
-    api_url: json.data.api_url,
-    categories: json.data.category_count_list || [],
+    category: json?.data?.category || null,
   };
 }
 
-export default async function BlogCategoryPage({
+export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+
   const { id } = await params;
 
-  const data = await getBlogs(Number(id));
+  const data = await getCategory(Number(id));
 
-  if (!data) {
-    return <div className="container py-5">No blogs found</div>;
-  }
+  if (!data || !data.category.length) return {};
 
-  const { blogs, api_url, categories } = data;
+  const categoryName = data.category[0]?.category_title || "Blog Category";
 
-  return (
-    <>
-      {/* Breadcrumb */}
-      <div className="breadcumb-wrapper position-relative">
-        <div className="breadcumb-banner">
-          <img
-            src="/assets/img/breadcrumb/breadcumb-banner.png"
-            alt="bg-banner"
-          />
-        </div>
+  return {
+    title: `${categoryName} Blogs | Rankridge Junior College`,
+    description: `Read the latest ${categoryName} blogs, tips and insights from Rankridge experts.`,
+    keywords: `${categoryName}, Rankridge blogs, study tips, education blogs`,
 
-        <div className="container">
-          <div className="breadcumb-content">
-            <h1 className="breadcumb-title">Blog Category</h1>
+    alternates: {
+      canonical: `/blogs/category/${id}`,
+    },
 
-            <ul className="breadcumb-menu">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>Blogs</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    openGraph: {
+      title: `${categoryName} Blogs | Rankridge`,
+      description: `Explore ${categoryName} articles from Rankridge faculty.`,
+      type: "website",
+      url: `/blogs/category/${id}`,
+    },
+  };
+}
 
-      {/* Blog List */}
-      <section className="th-blog-wrapper space-top space-extra2-bottom overflow-hidden">
-        <div className="container">
-          <div className="row gx-60">
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
 
-            {/* Blog Cards */}
-            <div className="col-xl-8 col-lg-7">
-              <div className="row">
+  const { id } = await params;
 
-                {blogs.map((blog: any) => {
-
-                  const date = new Date(blog.created_at);
-                  const day = date.getDate();
-                  const month = date.toLocaleString("default", { month: "short" });
-                  const year = date.getFullYear();
-
-                  const imageUrl =
-                    api_url && blog.image_path
-                      ? `${api_url.replace(/\/$/, "")}/uploads/blogs/${blog.image_path}`
-                      : "/assets/img/blog-default.jpg";
-
-                  return (
-                    <div className="col-lg-6" key={blog.id}>
-                      <div className="blog-card wow fadeInUp">
-
-                        <div className="blog-img position-relative">
-
-                          <Link href={`/blogs/${blog.id}`}>
-                            <div className="blog-img-box position-relative overflow-hidden">
-                          
-                               <img
-                                  src={imageUrl}
-                                  alt={blog.title}
-                                />
-                            </div>
-                          </Link>
-
-                          <div className="blog-date">
-                            <h5 className="blog-date-title">{day}</h5>
-                            <p className="blog-date-text">
-                              {month}, {year}
-                            </p>
-                          </div>
-
-                        </div>
-
-                        <div className="blog-content">
-
-                          <div className="blog-meta">
-                            <span className="author-icon">
-                              <img
-                                src="/assets/img/blog/author.png"
-                                alt="img"
-                              />
-                            </span>
-                            By Rankridge Faculty
-                          </div>
-
-                          <h3 className="box-title">
-                            <Link href={`/blogs/${blog.id}`}>
-                              {blog.title}
-                            </Link>
-                          </h3>
-
-                          <p className="box-text">
-                            {blog.description
-                              ?.replace(/<[^>]+>/g, "")
-                              .slice(0, 120)}...
-                          </p>
-
-                          <div className="btn-wrap">
-                            <Link
-                              href={`/blogs/${blog.id}`}
-                              className="th-btn style-border1 th-icon"
-                            >
-                              Read More
-                            </Link>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-
-              </div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="col-xl-4 col-lg-5">
-              <aside className="sidebar-area">
-
-                {/* Categories */}
-                <div className="widget widget_categories">
-                  <h3 className="widget_title">Category</h3>
-
-                  <ul>
-                    {categories.map((cat: any) => (
-                      <li key={cat.id}>
-                        <Link href={`/blogs/category/${cat.id}`}>
-                          {cat.title}
-                        </Link>
-                        <span>({cat.blog_count})</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                </div>
-
-              </aside>
-            </div>
-
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  return <CategoryClient id={id} />;
 }
