@@ -14,9 +14,9 @@ export default function Footer() {
                     <div className="col-lg-6 text-lg-end text-center">
                         <div className="footer-links">
                             <ul>
-                                <li><a href="">Privacy Policy</a></li>
-                                <li><a href="">Terms of services</a></li>
-                                <li><a href="">Disclaimer</a></li>
+                                <li><a href="/p/privacy-policy">Privacy Policy</a></li>
+                                <li><a href="/p/terms-of-services">Terms of services</a></li>
+                                <li><a href="/p/disclaimer">Disclaimer</a></li>
                             </ul>
                         </div>
                     </div>

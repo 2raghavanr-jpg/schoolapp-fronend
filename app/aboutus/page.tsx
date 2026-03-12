@@ -1,224 +1,206 @@
-export default function AboutPage() {
+async function getAbout() {
+
+  const res = await fetch(
+    "http://162.244.95.11:3000/api/aboutus",
+    {
+      cache: "no-store",
+      headers: {
+        Authorization:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJtb2JpbGUiLCJpYXQiOjE3NzMxNjcyNzAsImV4cCI6MjA4ODc0MzI3MH0.27yZUaRbksB2O-nFQuz_AxoRpqxaFZA1HqpwOn8Zpr8",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!res.ok) return null;
+
+  const json = await res.json();
+
+  return {
+    page: json?.data?.pages?.[0],
+    chooseus: json?.data?.choosus?.[0],
+    api_url: json?.data?.api_url,
+  };
+}
+
+export default async function AboutPage() {
+
+  const data = await getAbout();
+
+  if (!data) {
+    return <div className="container py-5">No data found</div>;
+  }
+
+  const { page, chooseus, api_url } = data;
+
   return (
     <>
       {/* Breadcrumb */}
-      <div
-        className="breadcumb-wrapper position-relative"
-        style={{ backgroundImage: "url(/assets/img/shape/breadcrumb-shep.png)" }}
-      >
-        <div className="breadcumb-banner">
-          <img src="/assets/img/breadcrumb/breadcumb-banner.png" alt="banner" />
-        </div>
+       <div class="breadcumb-wrapper position-relative" data-bg-src="assets/img/shape/breadcrumb-shep.png">
+        <div class="breadcumb-banner"><img src="assets/img/breadcrumb/breadcumb-banner.png" alt="bg-banner" /></div>
 
-        <div className="container">
-          <div className="row">
-            <div className="col-xxl-5">
-              <div className="breadcumb-content">
-                <h1 className="breadcumb-title">About Us</h1>
-                <ul className="breadcumb-menu">
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>About Us</li>
-                </ul>
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-5">
+                    <div class="breadcumb-content">
+                        <h1 class="breadcumb-title">About Us</h1>
+                        <ul class="breadcumb-menu">
+                            <li><a href="/">Home</a></li>
+                            <li>About Us</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
       {/* About Section */}
-      <div className="about1-area position-relative overflow-hidden space" id="about-sec">
-        <div
-          className="about-shep-2 shape-mockup d-none d-xxl-block"
-          style={{ bottom: "0%", right: "0%" }}
-        >
-          <img src="/assets/img/shape/feature-shep-2-home-1.png" alt="shape" />
-        </div>
-
-        <div
-          className="about-shape-right shape-mockup jump-reverse"
-          style={{ right: "3%", top: "2%" }}
-        >
-          <img src="/assets/img/shape/shape-7.png" alt="shape" />
-        </div>
-
+      <div className="about1-area space">
         <div className="container">
-          <div className="about-wrap1 position-relative z-index-2">
-            <div className="row gy-60 align-items-center justify-content-center">
-              
-              {/* Content */}
-              <div className="col-xl-5">
-                <div className="about-content">
-                  <div className="title-area">
-                    <span className="sub-title">
-                      Best Junior College in Hyderabad with IIT-NEET
-                    </span>
 
-                    <h2 className="sec-title">
-                      Welcome to Rankridge
-                    </h2>
+          <div className="row align-items-center">
 
-                    <p className="sec-text mt-25">
-                      Rankridge is the Best Junior College in Hyderabad with IITJEE | NEET |
-                      EAMCET | BITSAT coaching institute guiding students to achieve
-                      high scores in medical and engineering entrance examinations.
-                      We offer long-term, short-term and crash courses for students
-                      preparing for these exams.
-                    </p>
+            {/* Content */}
+            <div className="col-xl-5">
+              <div className="about-content">
 
-                    <p className="sec-text mt-25">
-                      Rankridge has exceptional faculty qualified from prominent
-                      institutes. We provide unmatched learning experiences and
-                      strategies that help students achieve top ranks in
-                      Engineering and Medical examinations.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <div className="title-area">
 
-              {/* Image */}
-              <div className="col-xl-7">
-                <div className="img-content position-relative">
-                  <div className="img-box4">
-                    <div className="img1">
-                      <img src="/assets/img/college.jpg" alt="college" />
-                    </div>
-
-                    <div className="counter-card3">
-                      <h3 className="box-number text-white">
-                        <span className="counter-number">280</span>k+
-                      </h3>
-                      <p className="box-text text-white">
-                        World-wide Happy Students
-                      </p>
-                    </div>
-                  </div>
+                  <h2 className="sec-title">
+                    {page?.title}
+                  </h2>
 
                   <div
-                    className="shape-mockup jump"
-                    style={{ right: "26%", top: "0%" }}
-                  >
-                    <img src="/assets/img/shape/about-3-2.png" alt="shape" />
-                  </div>
-                </div>
-              </div>
+                    className="sec-text mt-25"
+                    dangerouslySetInnerHTML={{
+                      __html: page?.description,
+                    }}
+                  />
 
+                </div>
+
+              </div>
             </div>
+
+            {/* Image */}
+            <div className="col-xl-7">
+              <div className="img-box4">
+
+                <img
+                  src={`${api_url}uploads/pages/${page?.image_path}`}
+                  alt={page?.title}
+                />
+                <div className="counter-card3 wow fadeInUp" data-wow-delay=".3s">
+                                    <h3 className="box-number text-white">
+                                        <span className="counter-number">280</span> k+
+                                    </h3>
+                                    <p className="box-text text-white">World-wide Happy Students</p>
+                                </div>
+              </div>
+                 
+            </div>
+
           </div>
+
         </div>
       </div>
 
-      {/* Why Rankridge */}
-      <section className="community-area-2 overflow-hidden position-relative">
-        <div className="container">
-          <div className="space">
-
-            <div className="title-area text-center text-xl-start">
-              <span className="sub-title">Choose Us</span>
-              <h2 className="sec-title">Why Rankridge ?</h2>
-
-              <p className="mt-25">
-                Rankridge has an unbeatable track record delivering
-                outstanding results in medical and engineering examinations.
-                With experienced faculty and structured programs,
-                we help students achieve the best ranks.
-              </p>
-            </div>
-
-            <div className="row">
-
-              {/* Features */}
-              <div className="col-xl-6">
-                <div className="community-wrap2">
-
-                  <div className="community-card2">
-                    <div className="card-content">
-                      <h3 className="box-title">Experienced Faculty</h3>
-                      <p className="box-text">
-                        Our faculty consists of experienced academicians
-                        and subject experts from premier universities.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="community-card2">
-                    <div className="card-content">
-                      <h3 className="box-title">Our Teaching Approach</h3>
-                      <p className="box-text">
-                        Our holistic teaching approach creates
-                        an excellent classroom environment for learning.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="community-card2">
-                    <div className="card-content">
-                      <h3 className="box-title">Regular Tests</h3>
-                      <p className="box-text">
-                        We conduct regular tests and assignments
-                        to monitor student performance.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="community-card2">
-                    <div className="card-content">
-                      <h3 className="box-title">Great Resources</h3>
-                      <p className="box-text">
-                        Our students get access to premium study materials
-                        and experienced faculty support.
-                      </p>
-                    </div>
-                  </div>
-
+      {/* Why Choose Us */}
+        <section class="community-area-2 overflow-hidden position-relative" id="community-sec">
+        <div class="container">
+            <div class="space">
+                <div class="title-area text-center text-xl-start">
+                    <span class="sub-title text-anim">Choose Us</span>
+                    <h2 class="sec-title text-anim2">
+                         {chooseus?.title}
+                    </h2>
+                    <p class="mt-25 wow fadeInUp" data-wow-delay=".3s">
+                       {chooseus?.description}
+                    </p>
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="community-wrap2">
+                            <div class="community-card2 wow fadeInUp" data-wow-delay=".2s">
 
-              {/* Contact Form */}
-              <div className="col-xl-6">
-                <form className="contact-form">
+                                <div class="card-content">
+                                        <h3 class="box-title">{chooseus?.option_1_title}</h3>
+                                        <p class="box-text">{chooseus?.option_1_description}</p>
+                                    </div>
+                            </div>
+                            <div class="community-card2 wow fadeInUp" data-wow-delay=".4s">
 
-                  <div className="row">
+                                <div class="card-content">
+                                     <h3 class="box-title">{chooseus?.option_2_title}</h3>
+                                        <p class="box-text">{chooseus?.option_2_description}</p>
+                                </div>
+                            </div>
+                            <div class="community-card2 wow fadeInUp" data-wow-delay=".6s">
 
-                    <div className="form-group col-md-6">
-                      <input type="text" className="form-control" placeholder="First Name*" />
+                                <div class="card-content">
+                                     <h3 class="box-title">{chooseus?.option_3_title}</h3>
+                                        <p class="box-text">{chooseus?.option_3_description}</p>
+                                </div>
+                            </div>
+                            <div class="community-card2 wow fadeInUp" data-wow-delay=".8s">
+
+                                <div class="card-content">
+                                     <h3 class="box-title">{chooseus?.option_4_title}</h3>
+                                        <p class="box-text">{chooseus?.option_4_description}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-xl-6">
+                        <form action="" method="POST" class="contact-form ajax-contact">
+                            <div class="row">
+                                <div class="form-group style-border col-md-6">
+                                    <input type="text" class="form-control" name="fristname" id="fristname3" placeholder="First name*" />
+                                </div>
 
-                    <div className="form-group col-md-6">
-                      <input type="email" className="form-control" placeholder="Email*" />
+                                <div class="form-group style-border col-md-6">
+                                    <input type="email" class="form-control" name="email" id="email3" placeholder="e-mail address*" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="number" class="form-control" name="number" id="number3" placeholder="Phone*" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="date" class="form-control" name="date" id="date3" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="text" class="form-control" name="country" id="country3" placeholder="Country*" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="text" class="form-control" name="city" id="city3" placeholder="City*" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="text" class="form-control" name="zipcode" id="zipcode3" placeholder="Zip Code*" />
+                                </div>
+                                <div class="form-group style-border col-md-6">
+                                    <input type="text" class="form-control" name="address" id="address3" placeholder="Address*" />
+                                </div>
+
+                                <div class="form-group style-border col-12">
+                                    <textarea name="message"
+                                              id="message3"
+                                              cols="30"
+                                              rows="2"
+                                              class="form-control"
+                                              placeholder="Write your message*"></textarea>
+                                </div>
+                                <div class="form-btn col-12 mt-15"><button class="th-btn th-btn white-hover">Send Message</button></div>
+                            </div>
+                            <p class="form-messages mb-0 mt-3"></p>
+                        </form>
                     </div>
-
-                    <div className="form-group col-md-6">
-                      <input type="text" className="form-control" placeholder="Phone*" />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                      <input type="date" className="form-control" />
-                    </div>
-
-                    <div className="form-group col-12">
-                      <textarea
-                        rows="3"
-                        className="form-control"
-                        placeholder="Write your message"
-                      ></textarea>
-                    </div>
-
-                    <div className="form-btn col-12 mt-15">
-                      <button className="th-btn">Send Message</button>
-                    </div>
-
-                  </div>
-
-                </form>
-              </div>
-
+                </div>
             </div>
 
-          </div>
         </div>
-      </section>
+        <div class="community-shape1 shape-mockup jump d-none d-xxl-block" data-left="0%" data-bottom="0%">
+            <img src="assets/img/shape/communiti-3-1.png" alt="Stadum" />
+        </div>
+    </section>
     </>
   );
 }
