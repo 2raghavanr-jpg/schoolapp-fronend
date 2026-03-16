@@ -6073,7 +6073,7 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
     color:white;
 }
 .accordion-card:not(:has(.accordion-button.collapsed)) .faq-text {
-    color: var(--black-color8) !important;
+    color: var(--white-color8) !important;
 }
 
 @media (max-width: 575px) {
@@ -7632,4 +7632,38 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
     max-width: 100%;
     height: auto;
     object-fit: contain; /* Changed from 'cover' to 'contain' to stop clipping */
+}
+
+
+.th-menu-wrapper {
+  transform: translateX(-100%);
+  transition: 0.3s;
+}
+
+.th-menu-wrapper.active {
+  transform: translateX(0);
+}
+
+
+.main-menu-mobile ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-menu-mobile li {
+  padding: 14px 0;
+  font-size: 18px;
+}
+
+.mobile-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  font-size: 22px;
+  font-weight: bold;
 }
