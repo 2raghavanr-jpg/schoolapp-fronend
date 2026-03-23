@@ -1,7 +1,7 @@
 async function getBlogs() {
 
   const res = await fetch(
-    "http://162.244.95.11:3000/api/blogs",
+    `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`,
     {
       cache: "no-store",
       headers: {

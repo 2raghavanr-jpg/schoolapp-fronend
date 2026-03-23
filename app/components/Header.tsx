@@ -7,7 +7,7 @@ export default function Header() {
   const [homeData, setHomeData] = useState(null);
 
   useEffect(() => {
-    fetch("http://162.244.95.11:3000/uploads/api/home.json")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploads/api/home.json`)
       .then((res) => res.json())
       .then((data) => setHomeData(data.data))
       .catch((err) => console.error(err));
@@ -21,7 +21,7 @@ export default function Header() {
                 <div className="row justify-content-between align-items-center">
                     <div className="col-auto">
                         <div className="header-logo">
-                            <a href="/"><img src="http://162.244.95.11:3000/uploads/school/1771763099573-logo-4.png" alt="" style={{width:200}} /></a>
+                            <a href="/"><img src="https://collegeadmin.rankridge.com/uploads/school/1771763099573-logo-4.png" alt="" style={{width:200}} /></a>
                         </div>
                     </div>
                     <div className="col-auto">

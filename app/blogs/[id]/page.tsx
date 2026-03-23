@@ -3,7 +3,7 @@ import Link from "next/link";
 
 async function getBlog(id: number) {
   const res = await fetch(
-    `http://162.244.95.11:3000/api/blog/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/blog/${id}`,
     {
       cache: "no-store",
       headers: {

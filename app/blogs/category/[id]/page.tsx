@@ -3,7 +3,7 @@ import CategoryClient from "./CategoryClient";
 async function getCategory(id: string) {
 
   const res = await fetch(
-    `http://162.244.95.11:3000/api/blog-category/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/blog-category/${id}`,
     {
       cache: "no-store",
       headers: {

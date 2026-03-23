@@ -40,7 +40,7 @@ export default function Faq() {
 
       try {
 
-        const res = await fetch("http://162.244.95.11:3000/api/faqs", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/faqs`, {
           headers: {
             Authorization:
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJtb2JpbGUiLCJpYXQiOjE3NzMxNjcyNzAsImV4cCI6MjA4ODc0MzI3MH0.27yZUaRbksB2O-nFQuz_AxoRpqxaFZA1HqpwOn8Zpr8",

@@ -1,7 +1,7 @@
 import HomeClient from "./HomeClient";
 async function getPage(slug: string) {
   const res = await fetch(
-   `http://162.244.95.11:3000/api/p/${slug}`,
+   `${process.env.NEXT_PUBLIC_API_URL}/api/p/${slug}`,
     {
       cache: "no-store",
       headers: {

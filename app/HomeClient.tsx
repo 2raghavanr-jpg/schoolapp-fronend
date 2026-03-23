@@ -5,9 +5,10 @@ import { Autoplay } from 'swiper/modules';
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Import Swiper styles (these are scoped to the component)
 import 'swiper/css';
+
 async function getPage(slug: string) {
   const res = await fetch(
-    `http://162.244.95.11:3000/api/p/${slug}`,
+    `{}api/p/${slug}`,
     {
       cache: "no-store",
       headers: {
@@ -118,7 +119,7 @@ export default function Home() {
     const [homeData, setHomeData] = useState<HomeData | null>(null);
     
     useEffect(() => {
-        fetch("http://162.244.95.11:3000/uploads/api/home.json")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/uploads/api/home.json`)
         .then((res) => res.json())
         .then((data) => setHomeData(data.data))
         .catch((err) => console.error(err));

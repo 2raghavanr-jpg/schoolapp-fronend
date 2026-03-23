@@ -4,7 +4,7 @@ import Link from "next/link";
 async function getBlogs(id: number) {
 
   const res = await fetch(
-    `http://162.244.95.11:3000/api/blog-category/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/blog-category/${id}`,
     {
       cache: "no-store",
       headers: {
@@ -120,9 +120,9 @@ export default async function CategoryClient({
 
                             
                              <img
-            src={imageUrl}
-            alt={blog.title}
-          />
+                                src={imageUrl}
+                                alt={blog.title}
+                              />
                             </div>
 
                           </Link>

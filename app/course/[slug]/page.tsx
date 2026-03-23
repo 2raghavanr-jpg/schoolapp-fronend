@@ -3,7 +3,7 @@ import Image from "next/image";
 async function getCourse(slug: string) {
 
   const res = await fetch(
-  `http://162.244.95.11:3000/api/academics/${slug}`,
+  `${process.env.NEXT_PUBLIC_API_URL}/api/academics/${slug}`,
   {
     cache: "no-store",
     headers: {
