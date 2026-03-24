@@ -5,6 +5,7 @@ import { Autoplay } from 'swiper/modules';
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Import Swiper styles (these are scoped to the component)
 import 'swiper/css';
+import EnquiryForm from "./components/EnquiryForm";
 
 async function getPage(slug: string) {
   const res = await fetch(
@@ -719,46 +720,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="contact-form-v1 col-lg-6 col-md-12">
-                        <form action="" method="POST" className="contact-form ajax-contact">
-                            <div className="row">
-                                <div className="form-group style-border col-md-6">
-                                    <input type="text" className="form-control" name="fristname" id="fristname3" placeholder="First name*" />
-                                </div>
-
-                                <div className="form-group style-border col-md-6">
-                                    <input type="email" className="form-control" name="email" id="email3" placeholder="e-mail address*" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="number" className="form-control" name="number" id="number3" placeholder="Phone*" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="date" className="form-control" name="date" id="date3" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="text" className="form-control" name="country" id="country3" placeholder="Country*" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="text" className="form-control" name="city" id="city3" placeholder="City*" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="text" className="form-control" name="zipcode" id="zipcode3" placeholder="Zip Code*" />
-                                </div>
-                                <div className="form-group style-border col-md-6">
-                                    <input type="text" className="form-control" name="address" id="address3" placeholder="Address*" />
-                                </div>
-
-                                <div className="form-group style-border col-12">
-                                    <textarea name="message"
-                                              id="message3"
-                                              cols={30}
-                                              rows={2}
-                                              className="form-control"
-                                              placeholder="Write your message*"></textarea>
-                                </div>
-                                <div className="form-btn col-12 mt-15"><button className="th-btn th-btn white-hover">Send Message</button></div>
-                            </div>
-                            <p className="form-messages mb-0 mt-3"></p>
-                        </form>
+                       <EnquiryForm/>
                     </div>
 
                 </div>

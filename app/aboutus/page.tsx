@@ -1,3 +1,5 @@
+import EnquiryForm from "../components/EnquiryForm";
+
 async function getAbout() {
 
   const res = await fetch(
@@ -182,47 +184,9 @@ export default async function AboutPage() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
-                        <form action="" method="POST" class="contact-form ajax-contact">
-                            <div class="row">
-                                <div class="form-group style-border col-md-6">
-                                    <input type="text" class="form-control" name="fristname" id="fristname3" placeholder="First name*" />
-                                </div>
-
-                                <div class="form-group style-border col-md-6">
-                                    <input type="email" class="form-control" name="email" id="email3" placeholder="e-mail address*" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="number" class="form-control" name="number" id="number3" placeholder="Phone*" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="date" class="form-control" name="date" id="date3" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="text" class="form-control" name="country" id="country3" placeholder="Country*" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="text" class="form-control" name="city" id="city3" placeholder="City*" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="text" class="form-control" name="zipcode" id="zipcode3" placeholder="Zip Code*" />
-                                </div>
-                                <div class="form-group style-border col-md-6">
-                                    <input type="text" class="form-control" name="address" id="address3" placeholder="Address*" />
-                                </div>
-
-                                <div class="form-group style-border col-12">
-                                    <textarea name="message"
-                                              id="message3"
-                                              cols="30"
-                                              rows="2"
-                                              class="form-control"
-                                              placeholder="Write your message*"></textarea>
-                                </div>
-                                <div class="form-btn col-12 mt-15"><button class="th-btn th-btn white-hover">Send Message</button></div>
-                            </div>
-                            <p class="form-messages mb-0 mt-3"></p>
-                        </form>
+                    <div className="col-xl-6">
+                                               <EnquiryForm/>
+                        
                     </div>
                 </div>
             </div>
