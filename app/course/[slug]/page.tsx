@@ -132,7 +132,7 @@ export default async function CoursePage({
 
           <div className="row">
 
-            {subCourses.map((item: any) => (
+            {/* {subCourses.map((item: any) => (
               <div key={item.id} className="col-lg-3 col-md-6">
 
                 <div className="program-card">
@@ -149,7 +149,28 @@ export default async function CoursePage({
                 </div>
 
               </div>
-            ))}
+            ))} */}
+            {subCourses.map((item: any) => (
+  <div key={item.id} className="col-lg-3 col-md-6 mb-4">
+    <div className="program-card">
+
+      {/* Header */}
+      <div className="card-header">
+        <img
+          src={`${api_url}uploads/coaching-techniques/${item.image_path}`}
+          alt={item.title}
+        />
+      </div>
+
+      {/* Body */}
+      <div className="card-body">
+        <h4 className="card-title">{item.title}</h4>
+        <p className="card-description">{item.description}</p>
+      </div>
+
+    </div>
+  </div>
+))}
 
           </div>
 
