@@ -23,8 +23,18 @@ async function getBlog(id: number) {
   return {
     blog: json.data.blog,
     api_url: json.data.api_url,
+    recentBlogs:json.data.recentBlogs,
     categories: json.data.category_count_list || [],
   };
+}
+function getFirstWords(html = "", wordLimit = 30) {
+  const text = html.replace(/<[^>]*>/g, '').trim();
+
+  if (!text) return "";
+
+  const words = text.split(/\s+/).slice(0, wordLimit).join(" ");
+
+  return words + (text.split(/\s+/).length > wordLimit ? "..." : "");
 }
 export async function generateMetadata({
   params,
@@ -36,7 +46,7 @@ export async function generateMetadata({
 
   if (!data) return {};
 
-  const { blog } = data;
+  const { blog,recentBlogs } = data;
   console.log("faq",blog);
   return {
     title: blog?.meta_title || blog?.title,
@@ -67,8 +77,7 @@ export default async function BlogPage({
     return <div className="container py-5">Blog not found</div>;
   }
 
-  const { blog, api_url, categories } = data;
-
+  const { blog, api_url, categories,recentBlogs } = data;
   const date = new Date(blog.created_at);
   const day = date.getDate();
   const month = date.toLocaleString("default", { month: "short" });
@@ -179,34 +188,37 @@ export default async function BlogPage({
                   <h3 className="widget_title">Recent Posts</h3>
 
                   <div className="recent-post-wrap">
-
-                    <div className="recent-post">
-                      <div className="media-img">
-                        <img
-                          src="/assets/img/blog/recent-post-1-1.jpg"
-                          alt="Blog"
-                        />
-                      </div>
-
-                      <div className="media-body">
-                        <h4 className="post-title">
-                          <a className="text-inherit">
-                            Trailblazers in Faculty Perspectives
-                          </a>
-                        </h4>
-
-                        <div className="recent-post-meta">
-                          <span>
-                            <i className="far fa-calendar"></i> 26/6/2025
-                          </span>
+                    {recentBlogs?.map((blog) => (
+                      <div key={blog.id} className="recent-post">
+                        
+                        <div className="media-img">
+                          <img
+                            src={`${api_url}uploads/blogs/${blog.image_path}`}
+                            alt={blog.title}
+                          />
                         </div>
-                      </div>
-                    </div>
 
+                        <div className="media-body">
+                          <h4 className="post-title">
+                            <a className="text-inherit" href={`/blogs/${blog.id}`}>
+                              {getFirstWords(blog.title, 10)}
+                            </a>
+                          </h4>
+
+                          <div className="recent-post-meta">
+                            <span>
+                              <i className="far fa-calendar"></i>{" "}
+                              {new Date(blog.created_at).toLocaleDateString("en-GB")}
+                            </span>
+                          </div>
+                        </div>
+
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Tags */}
+                {/* Tags 
                 <div className="widget widget_tag_cloud">
                   <h3 className="widget_title">Popular Tags</h3>
 
@@ -223,7 +235,7 @@ export default async function BlogPage({
                     <Link href="#">Class</Link>
                   </div>
                 </div>
-
+*/}
               </aside>
             </div>
 

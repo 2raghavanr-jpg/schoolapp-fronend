@@ -60,6 +60,16 @@ export async function generateMetadata({
     },
   };
 }
+
+function getFirstWords(html, wordLimit = 30) {
+  // Remove HTML tags
+  const text = html.replace(/<[^>]*>/g, '');
+
+  // Split into words and limit
+  const words = text.split(/\s+/).slice(0, wordLimit).join(' ');
+
+  return words + '...';
+}
 export default function Home() {
     type Banner = {
         id: number;
@@ -517,38 +527,38 @@ export default function Home() {
 
             </div>
         {homeData && (
-            <div className="row gy-5 justify-content-center">
-                {homeData.courses.map((item, index) => (
-                <div key={item.id ?? index} className="col-xl-4 col-lg-6">
-                    <div className="campus-card wow fadeInLeft" data-wow-delay=".2s">
-                    <div className="campus-img global-img">
-                        <a href="" className="d-block position-relative">
-                        <img
-                            src={`${homeData.api_url}uploads/courses/${item.image_path}`}
-                            alt={item.title}
-                            className="img-1"
-                        />
-                        </a>
-                    </div>
+  <div className="row gy-5 justify-content-center">
+    {homeData.courses.map((item, index) => (
+      <div key={item.id ?? index} className="col-xl-4 col-lg-6">
+        <div className="campus-card wow fadeInLeft" data-wow-delay=".2s">
+          <div className="campus-img global-img">
+            <a href="" className="d-block position-relative">
+              <img
+                src={`${homeData.api_url}uploads/courses/${item.image_path}`}
+                alt={item.title}
+                className="img-1"
+              />
+            </a>
+          </div>
 
-                    <div className="campus-content">
-                        <h3 className="box-title">
-                        <a href="">{item.title}</a>
-                        </h3>
-                    <p
-                    className="box-text"
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                    ></p>
-                    </div>
+          <div className="campus-content">
+            <h3 className="box-title">
+              <a href="">{item.title}</a>
+            </h3>
 
-                    <a href="" className="th-btn style-border1 th-icon">
-                        Enroll Now
-                    </a>
-                    </div>
-                </div>
-                ))}
-            </div>
-            )}
+            <p className="box-text">
+              {getFirstWords(item.description, 30)}
+            </p>
+
+            <a href={`/course/${item.slug}`} className="th-btn style-border1 th-icon">
+              Enroll Now
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
         </div>
     </section>
 <div className="story-area-1 overflow-hidden space">
