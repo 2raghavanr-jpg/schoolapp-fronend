@@ -201,7 +201,7 @@ export default async function CoursePage({
                         </div>
                         <div className="btn-wrap wow fadeInUp justify-content-center justify-content-lg-start"
                              data-wow-delay=".4s">
-                            <a href="contactus.html" className="th-btn th-icon">Admission Enquiry</a>
+                            <a href="/contactus" className="th-btn th-icon">Admission Enquiry</a>
                         </div>
                     </div>
                 </div>
