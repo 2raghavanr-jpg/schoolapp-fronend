@@ -199,7 +199,11 @@ export default function Faq() {
 
                 <div
                   className="widget widget_banner3"
-                  data-bg-src={`${apiurl}uploads/pages/${pages[0]?.image_path}`}
+                  style={{
+                    backgroundImage: `url(${apiurl}uploads/pages/${pages[0]?.image_path})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                  }}
                 >
 
                   <div className="widget-banner">
