@@ -612,7 +612,7 @@ export default function Home() {
         </div>
         <div className="container">
             <div className="row gy-30 gx-30 align-items-center justify-content-center">
-                <div className="col-xxl-5">
+                <div className="col-md-5">
                     <div className="faq-imgbox wow fadeInLeft" data-wow-delay=".3s">
                         <div className="img1">
                             <img src="assets/img/college1.jpg" alt="About" />
@@ -620,7 +620,7 @@ export default function Home() {
 
                     </div>
                 </div>
-                <div className="col-xxl-7">
+                <div className="col-md-7">
                     <div className="faq-content">
                         <div className="faq-wrap">
                             <div className="title-area" style={{marginBottom: "25px"}}>

@@ -8240,5 +8240,11 @@ ul.comment-list .th-comment-item:first-child > .th-post-comment {
 }
 .breadcumb-wrapper img {
   width: 100%;
-  height: auto;
+  height: 300px;
+}
+
+
+.mb-1,.mb-30, .btn-wrap, .th-btn{
+    display: flex;
+    justify-content: center;
 }
