@@ -636,7 +636,7 @@ export default function Home() {
                         <div className="faq-box">
                             <div className="faq-wrap1">
                                 <div className="accordion" id="faqAccordion">
-                                    {[...homeData.faqs].reverse().slice(0, 4).map((faq, index) => (
+                                    {[...homeData.faqs].reverse().map((faq, index) => (
                                         <div className="accordion-card wow fadeInUp" data-wow-delay={`.${index + 1}s`} key={faq.id}>
                                             <div className="accordion-header" id={`collapse-item-${faq.id}`}>
                                                 <button className="accordion-button collapsed"
