@@ -201,7 +201,7 @@ export default function Home() {
 
         <div className="container text-center">
             <h2 className="hero-title ">
-                Top Intermediate Colleges in Hyderabad for <br />IIT-JEE & NEET Coaching
+                {homeData.getPageTitle['section_one_heading'] ? homeData.getPageTitle['section_one_heading']: "Top Intermediate Colleges in Hyderabad for IIT-JEE & NEET Coaching"}
             </h2>
             <p className="hero-text">
                 Your child's bright future begins with Rankridge's Outstanding integrated program.
@@ -359,7 +359,9 @@ export default function Home() {
                 <div className="col-lg-9 col-12">
                     <div className="title-area text-center text-lg-start mb-75">
                         <span className="sub-title text-anim">Rankridge History</span>
-                        <h2 className="sec-title text-anim2">A Legacy of Record-Breaking Results</h2>
+                        <h2 className="sec-title text-anim2">
+                            {homeData.getPageTitle['rankridge_history'] ? homeData.getPageTitle['section_one_heading']: "Top Intermediate Colleges in Hyderabad for IIT-JEE & NEET Coaching"}
+                        </h2>
                     </div>
                 </div>
 
@@ -565,7 +567,7 @@ export default function Home() {
         <div className="container">
           <div className="title-area text-center text-lg-start">
             <span className="sub-title">Achievements</span>
-            <h2 className="sec-title">Outstanding Achievements — Rankers Who Made Us Proud</h2>
+            <h2 className="sec-title">{homeData.getPageTitle['out_standing'] ? homeData.getPageTitle['out_standing']: "Outstanding Achievements — Rankers Who Made Us Proud"}</h2>
           </div>
         </div>
 
@@ -712,7 +714,7 @@ export default function Home() {
                             <span className="sub-title text-anim">INTERESTED IN JOINING WITH US?</span>
                             
                             <h2 className="sec-title text-anim2 mb-55">
-                                About Rankridge Junior College – Kukatpally & Hyderabad
+                                {homeData.getPageTitle['joining_with_us'] ? homeData.getPageTitle['joining_with_us']: "Join the Rankridge Community and Transform Your Child’s Future Today!"}
                             </h2>
                             
                             <div className="box-text-wrap mt-30 wow fadeInUp" data-wow-delay=".3s">
@@ -726,7 +728,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="btn-wrap wow fadeInUp" data-wow-delay=".4s">
-                            <a href="" className="th-btn th-icon">Enquire Now</a>
+                            <a href="" className="th-btn th-icon">{homeData.getPageTitle['joining_with_us_button'] ? homeData.getPageTitle['joining_with_us_button']: "Enquire Now"}</a>
                         </div>
                     </div>
                     <div className="contact-form-v1 col-lg-6 col-md-12">
