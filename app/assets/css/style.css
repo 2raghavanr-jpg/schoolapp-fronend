@@ -427,7 +427,7 @@ input {
     height: 58px;
     padding: 0 25px 0 25px;
     padding-right: 45px;
-    border: 1px solid transparent;
+    border: 1px solid black !important;
     color: var(--title-color);
     background-color: var(--smoke-color2);
     font-size: 16px;

@@ -234,7 +234,7 @@ export default function Home() {
         </span>
         <div className="container">
             <div className="about-wrap1 position-relative z-index-2">
-                <div className="row gy-60 align-items-center justify-content-center">
+                <div className="row gy-60 justify-content-center">
                     <div className="col-xl-6">
                         <div className="img-box1">
                             <div className="img1 text-center text-sm-start wow fadeInLeft" data-wow-delay=".2s">
