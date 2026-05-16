@@ -52,7 +52,12 @@ html,
 body {
     scroll-behavior: auto !important
 }
-
+#devtools-indicator {
+  display: none!important;
+}
+.nextjs-toast{
+    display: none!important;
+    }
 body {
     font-family: var(--body-font);
     font-size: 15px;
